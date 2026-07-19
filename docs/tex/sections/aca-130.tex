@@ -1,0 +1,28 @@
+\chapter{ACA-130 --- Decision State Machine}
+\section{Canonical states}
+\[
+S\in\{\state{ALLOW},\state{DENY},\state{HOLD},\state{CONFLICT},\state{REVOKED},\state{ESCALATE}\}.
+\]
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=13mm and 18mm, st/.style={draw,ellipse,minimum width=23mm,minimum height=9mm}, >=Latex]
+\node[st] (hold) {HOLD};
+\node[st,above right=of hold] (allow) {ALLOW};
+\node[st,below right=of hold] (deny) {DENY};
+\node[st,above left=of hold] (conf) {CONFLICT};
+\node[st,below left=of hold] (esc) {ESCALATE};
+\node[st,right=35mm of hold] (rev) {REVOKED};
+\draw[->] (hold)--node[above,sloped]{all required true}(allow);
+\draw[->] (hold)--node[below,sloped]{required false}(deny);
+\draw[->] (conf)--(hold);
+\draw[->] (esc)--(hold);
+\draw[->] (allow)--node[above]{valid revocation}(rev);
+\draw[->] (deny)--node[below]{review / correction}(hold);
+\end{tikzpicture}
+\caption{Baseline state transitions. Profiles may restrict transitions but may not erase provenance.}
+\end{figure}
+
+\begin{requirement}[ACA-130-001]
+Every transition SHALL record its triggering event, actor or service identity, timestamp, prior state, resulting state, and rule version.
+\end{requirement}

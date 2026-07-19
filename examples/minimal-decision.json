@@ -1,0 +1,25 @@
+{
+  "record_id": "DPR-example-0001",
+  "profile_id": "ACA-DEMO-1",
+  "rule_version": "0.1.0",
+  "evaluated_at": "2026-07-18T19:00:00Z",
+  "state": "HOLD",
+  "predicates": [
+    {
+      "id": "authority.valid",
+      "value": "TRUE",
+      "source": "credential-registry",
+      "evidence_hash": "sha256:example"
+    },
+    {
+      "id": "evidence.complete",
+      "value": "UNKNOWN",
+      "source": "case-record"
+    }
+  ],
+  "remedy": {
+    "status": "AVAILABLE",
+    "route": "supply-missing-evidence",
+    "deadline": null
+  }
+}

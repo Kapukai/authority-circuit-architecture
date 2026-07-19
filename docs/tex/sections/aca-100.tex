@@ -1,0 +1,31 @@
+\chapter{ACA-100 --- Authority Circuit Architecture}
+\section{System model}
+The architecture separates six layers: source authority, formal rule, evidence and provenance, deterministic evaluation, decision proof, and remedy execution.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=8mm, box/.style={draw,rounded corners,minimum width=30mm,minimum height=10mm,align=center}, >=Latex]
+\node[box] (s) {Source authority};
+\node[box,right=of s] (f) {Formal predicates};
+\node[box,right=of f] (e) {Evaluation};
+\node[box,below=of e] (p) {Decision proof};
+\node[box,left=of p] (r) {Remedy};
+\node[box,left=of r] (a) {Audit / replay};
+\draw[->] (s)--(f);\draw[->] (f)--(e);\draw[->] (e)--(p);\draw[->] (p)--(r);\draw[->] (r)--(a);\draw[->] (a) |- (f);
+\end{tikzpicture}
+\caption{Closed-loop authority architecture.}
+\end{figure}
+
+\section{Architectural invariants}
+\begin{requirement}[ACA-100-001]
+A conforming implementation SHALL identify the versioned rule set used for every consequential decision.
+\end{requirement}
+\begin{requirement}[ACA-100-002]
+A conforming implementation SHALL preserve unresolved, conflicting, expired, and revoked inputs as distinct machine-readable states.
+\end{requirement}
+\begin{requirement}[ACA-100-003]
+A conforming implementation SHALL generate a Decision Proof Record for each completed evaluation.
+\end{requirement}
+\begin{requirement}[ACA-100-004]
+A conforming implementation SHALL expose at least one defined remedy or review route for every non-final or adverse state.
+\end{requirement}

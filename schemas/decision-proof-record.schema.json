@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/standards/authority-circuit/schemas/decision-proof-record.schema.json",
+  "title": "Decision Proof Record",
+  "type": "object",
+  "required": [
+    "record_id",
+    "profile_id",
+    "rule_version",
+    "evaluated_at",
+    "state",
+    "predicates",
+    "remedy"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "profile_id": {
+      "type": "string"
+    },
+    "rule_version": {
+      "type": "string"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "HOLD",
+        "CONFLICT",
+        "REVOKED",
+        "ESCALATE"
+      ]
+    },
+    "predicates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "value",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "enum": [
+              "TRUE",
+              "FALSE",
+              "UNKNOWN",
+              "CONFLICTED",
+              "EXPIRED",
+              "REVOKED"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "evidence_hash": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "remedy": {
+      "type": "object",
+      "required": [
+        "status",
+        "route"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "NONE",
+            "AVAILABLE",
+            "ACTIVE",
+            "COMPLETED",
+            "FAILED"
+          ]
+        },
+        "route": {
+          "type": "string"
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

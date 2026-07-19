@@ -1,0 +1,27 @@
+\chapter{ACA-120 --- Verifiable Authority Cell}
+\section{Canonical inputs}
+A baseline cell evaluates:
+\[
+I=\{A,J,R,E,P,T,N,C,V\}
+\]
+where $A$ is authority validity, $J$ jurisdiction, $R$ rule applicability, $E$ evidence sufficiency, $P$ required procedure, $T$ temporal validity, $N$ notice and review, $C$ conflict state, and $V$ revocation or prohibition.
+
+\section{Allow expression}
+For profiles that permit Boolean authorization:
+\[
+\state{ALLOW}=A\land J\land R\land E\land P\land T\land N\land \neg C\land \neg V.
+\]
+
+\section{Required behavior}
+\begin{requirement}[ACA-120-001]
+A mandatory predicate with value \state{UNKNOWN} SHALL prevent \state{ALLOW}.
+\end{requirement}
+\begin{requirement}[ACA-120-002]
+A mandatory predicate with value \state{CONFLICTED} SHALL produce \state{CONFLICT} unless a profile defines a higher-priority safe state.
+\end{requirement}
+\begin{requirement}[ACA-120-003]
+A valid revocation or prohibition SHALL take precedence over ordinary authorization.
+\end{requirement}
+\begin{requirement}[ACA-120-004]
+Profiles SHALL identify which predicates are objective, evidentiary, discretionary, or non-computable. Human judgment SHALL NOT be concealed as deterministic computation.
+\end{requirement}

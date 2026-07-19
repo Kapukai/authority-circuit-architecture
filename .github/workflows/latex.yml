@@ -1,0 +1,20 @@
+name: Build standards PDF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: docs/tex/main.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ACA-standards-pdf
+          path: docs/tex/main.pdf

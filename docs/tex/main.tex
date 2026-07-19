@@ -1,0 +1,51 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs,longtable,array,enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit}
+\usepackage{amsmath,amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\definecolor{kapukai}{HTML}{214C63}
+\hypersetup{colorlinks=true,linkcolor=kapukai,urlcolor=kapukai}
+\pagestyle{fancy}\fancyhf{}\lhead{Authority Circuit Architecture}\rhead{Working Draft 0.1}\cfoot{\thepage}
+\newtcolorbox{requirement}[1][]{colback=gray!4,colframe=kapukai,title=#1,fonttitle=\bfseries}
+\newcommand{\state}[1]{\textsf{\textbf{#1}}}
+\title{\Huge Authority Circuit Standards Program\\[8pt]\Large A Formal Architecture for Deterministic, Verifiable Public Decision Systems}
+\author{Kapukai Governance Lab}
+\date{Working Draft 0.1 --- July 2026}
+\begin{document}
+\frontmatter
+\maketitle
+\chapter*{Publication Notice}
+This publication is a technical working draft. It is not legal advice, does not determine the validity of any real-world authority, and does not claim that every legal or public decision can be reduced to Boolean logic. It defines an engineering framework for making specified decision processes more observable, testable, reproducible, and correctable.
+\tableofcontents
+\mainmatter
+\input{sections/aca-000}
+\input{sections/aca-100}
+\input{sections/aca-110}
+\input{sections/aca-120}
+\input{sections/aca-130}
+\input{sections/aca-140}
+\input{sections/aca-150}
+\input{sections/implementation-roadmap}
+\appendix
+\chapter{Minimal Decision Proof Record}
+\begin{verbatim}
+{
+  "record_id": "DPR-example-0001",
+  "state": "HOLD",
+  "predicates": [
+    {"id":"authority.valid","value":"TRUE"},
+    {"id":"evidence.complete","value":"UNKNOWN"}
+  ],
+  "remedy": {"status":"AVAILABLE","route":"supply-missing-evidence"}
+}
+\end{verbatim}
+\end{document}

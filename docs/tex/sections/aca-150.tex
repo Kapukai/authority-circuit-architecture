@@ -1,0 +1,21 @@
+\chapter{ACA-150 --- Operationalized Remedy Protocol}
+\section{Lifecycle}
+The baseline remedy lifecycle is:
+\[
+\text{Detect}\rightarrow\text{Notify}\rightarrow\text{Preserve}\rightarrow
+\text{Review}\rightarrow\text{Correct}\rightarrow\text{Propagate}\rightarrow
+\text{Verify}\rightarrow\text{Close}.
+\]
+
+\begin{requirement}[ACA-150-001]
+A remedy SHALL NOT be marked complete merely because a review occurred.
+\end{requirement}
+\begin{requirement}[ACA-150-002]
+Closure SHALL require evidence that the corrective action was executed and, where applicable, propagated to dependent records and downstream decisions.
+\end{requirement}
+\begin{requirement}[ACA-150-003]
+The protocol SHALL retain the original state, correction history, responsible authority, elapsed time, and verification result.
+\end{requirement}
+
+\section{Core measures}
+Deployments SHOULD report: decision reproducibility rate, unresolved-input rate, contradiction-detection rate, median correction time, remedy completion rate, downstream propagation completeness, and independent replay success.

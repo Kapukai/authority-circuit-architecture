@@ -1,0 +1,17 @@
+\chapter{Implementation Roadmap}
+\section{First bounded profile}
+The first reference implementation should address a narrow decision with published rules, objective evidence, limited discretion, and a clear correction path. A filing-completeness or deadline-validity profile is preferable to a high-discretion adjudication.
+
+\section{Acceptance tests}
+The first implementation is not accepted until:
+\begin{enumerate}
+\item repeated evaluation of identical inputs produces identical records;
+\item two independent implementations produce equivalent states and reasons;
+\item missing evidence cannot produce \state{ALLOW};
+\item conflicting evidence is visibly preserved;
+\item revocation propagates to dependent decisions;
+\item every adverse or incomplete result identifies a testable remedy route.
+\end{enumerate}
+
+\section{Strategic outputs}
+The program should publish, in order: architecture, terminology, cell specification, state machine, proof schema, remedy protocol, test fixtures, reference implementation, independent evaluation, and conformance profile.

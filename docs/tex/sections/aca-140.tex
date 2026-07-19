@@ -1,0 +1,20 @@
+\chapter{ACA-140 --- Decision Proof Record}
+\section{Minimum record}
+A Decision Proof Record SHALL contain:
+\begin{enumerate}
+\item a unique record identifier;
+\item the decision profile and rule version;
+\item evaluation time and implementation identity;
+\item each material predicate, value, source, and evidence reference;
+\item the final state and transition reason;
+\item identified conflicts, unknowns, expirations, and revocations;
+\item the available remedy route and applicable deadline;
+\item an integrity mechanism suitable to the deployment context.
+\end{enumerate}
+
+\begin{requirement}[ACA-140-001]
+The record SHALL support deterministic replay when the evaluator has lawful access to the same rule versions and evidence objects.
+\end{requirement}
+\begin{requirement}[ACA-140-002]
+The record SHALL distinguish integrity proof from truth proof. A cryptographic hash proves that content has not changed; it does not prove that the original assertion was true.
+\end{requirement}
