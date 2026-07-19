@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Authority Circuit Architecture, please cite it using this metadata."
+title: "Authority Circuit Architecture"
+type: software
+authors:
+  - family-names: "Hillier"
+    given-names: "Christine Kanoelehua"
+repository-code: "https://github.com/Kapukai/authority-circuit-architecture"
+url: "https://kapukai.org"
+abstract: >
+  An open standards program for specifying, implementing, testing,
+  and auditing observable, deterministic decision systems.
+version: "0.1.0-working-draft"
+license: "Apache-2.0"
+date-released: "2026-07-19"
+keywords:
+  - governance
+  - standards
+  - transparency
+  - auditability
+  - decision systems
