@@ -1,0 +1,46 @@
+name: Release readiness
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate canonical structure and examples
+        run: python3 scripts/validate.py
+
+      - name: Build standards PDF
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: docs/tex/main.tex
+          work_in_root_file_dir: true
+
+      - name: Normalize PDF output
+        run: |
+          mkdir -p docs/build
+          mv docs/tex/main.pdf docs/build/ACA_Standards_Program_v0.1.pdf
+
+      - name: Create clean release packages
+        run: |
+          chmod +x scripts/package-release.sh
+          SKIP_PDF_BUILD=1 ./scripts/package-release.sh
+
+      - name: Upload candidate release
+        uses: actions/upload-artifact@v4
+        with:
+          name: ACA-candidate-${{ github.sha }}
+          path: |
+            dist/*.zip
+            dist/*.tar.gz
+            dist/*.sha256
+          if-no-files-found: error
