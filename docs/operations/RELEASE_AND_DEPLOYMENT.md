@@ -74,8 +74,8 @@ sha256sum --check MANIFEST.sha256
 Recommended Iceland staging mapping:
 
 ```text
-URL:  https://kapukai.org/staging/authority-circuit/
-Root: <Kapukai document root>/staging/authority-circuit/
+URL:  https://kapukai.org/stage/authority-circuit/
+Root: /var/www/kapukai-staging/authority-circuit/
 ```
 
 The staging site must remain visibly labeled as a working draft. Promotion
