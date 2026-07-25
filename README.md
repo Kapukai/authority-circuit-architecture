@@ -41,6 +41,7 @@ docs/build/ACA_Standards_Program_v0.1.pdf
 ```bash
 python3 scripts/validate.py
 ./scripts/package-release.sh
+./scripts/package-site.sh
 ```
 
 This creates clean, checksummed candidate artifacts under `dist/`. Release,
@@ -59,7 +60,18 @@ The static landing-page starter is in:
 site/standards/authority-circuit/index.html
 ```
 
-Publish it only after reviewing it against the existing Kapukai staging design.
+Canonical public URL:
+
+```text
+https://kapukai.org/standards/authority-circuit/
+```
+
+Deployment status: not yet promoted to production. The current site is a
+Working Draft 0.1 concept demonstrator and does not establish conformance.
+Publish only a verified release artifact after staging acceptance.
+
+The July 2026 predecessor website reconciliation is recorded in
+`docs/reconciliation/JULY_WEBSITE_MAPPING.md`.
 
 ## Development rule
 

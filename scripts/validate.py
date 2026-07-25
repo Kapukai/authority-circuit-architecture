@@ -70,9 +70,42 @@ def main() -> None:
     site = (ROOT / "site/standards/authority-circuit/index.html").read_text(
         encoding="utf-8"
     )
-    for marker in ("Working Draft 0.1", "Authority Circuit Architecture"):
+    for marker in (
+        "Working Draft 0.1",
+        "Authority Circuit Architecture",
+        "https://kapukai.org/standards/authority-circuit/",
+        'data-demonstrator="synthetic"',
+        "Technical working draft. Not legal advice.",
+    ):
         if marker not in site:
             fail(f"website is missing required draft marker: {marker}")
+
+    public_site_root = ROOT / "site/standards/authority-circuit"
+    required_site_files = {
+        public_site_root / "index.html",
+        public_site_root / "assets/styles.css",
+        public_site_root / "assets/app.js",
+    }
+    missing_site_files = [
+        str(path.relative_to(ROOT)) for path in required_site_files if not path.is_file()
+    ]
+    if missing_site_files:
+        fail(f"website is missing required files: {missing_site_files}")
+
+    privacy_markers = (
+        "Hillier Status Integrity Record",
+        "Christine Hillier",
+        "passport-denial",
+        "counsel-role-inconsistency",
+    )
+    public_text = "\n".join(
+        path.read_text(encoding="utf-8", errors="ignore")
+        for path in public_site_root.rglob("*")
+        if path.is_file()
+    )
+    leaked_markers = [marker for marker in privacy_markers if marker in public_text]
+    if leaked_markers:
+        fail(f"public standards site contains predecessor evidence markers: {leaked_markers}")
 
     forbidden = []
     for path in ROOT.rglob("*"):
