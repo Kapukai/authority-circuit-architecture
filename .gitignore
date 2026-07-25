@@ -1,0 +1,8 @@
+docs/build/*
+!docs/build/.gitkeep
+dist/
+release/
+*.zip
+*.tar.gz
+.DS_Store
+._*

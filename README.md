@@ -36,6 +36,17 @@ The compiled PDF will appear at:
 docs/build/ACA_Standards_Program_v0.1.pdf
 ```
 
+## Validate and package a candidate release
+
+```bash
+python3 scripts/validate.py
+./scripts/package-release.sh
+```
+
+This creates clean, checksummed candidate artifacts under `dist/`. Release,
+staging, production, and rollback gates are documented in
+`docs/operations/RELEASE_AND_DEPLOYMENT.md`.
+
 ## Overleaf
 
 Upload the repository ZIP to Overleaf and set `docs/tex/main.tex` as the main file.
