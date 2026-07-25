@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Authority Circuit Architecture</title>
+  <desc id="desc">Source, Evaluate, Prove, and Verified Remedy.</desc>
+  <rect width="1200" height="630" fill="#f4f1e8"/>
+  <rect width="1200" height="22" fill="#d59b4c"/>
+  <path d="M0 538C250 475 390 585 650 522s375-22 550 42v66H0z" fill="#dcebea"/>
+  <g transform="translate(74 68)">
+    <rect width="74" height="74" rx="17" fill="#183e50"/>
+    <text x="37" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="47" font-weight="700" fill="#f4f1e8">K</text>
+    <text x="98" y="29" font-family="Arial,sans-serif" font-size="21" font-weight="700" letter-spacing="1.5" fill="#183e50">KAPUKAI GOVERNANCE LAB</text>
+    <text x="98" y="58" font-family="Arial,sans-serif" font-size="18" letter-spacing="2.2" fill="#4d6872">WORKING DRAFT 0.1</text>
+  </g>
+  <text x="74" y="235" font-family="Arial,sans-serif" font-size="66" font-weight="700" fill="#183e50">Authority Circuit</text>
+  <text x="74" y="308" font-family="Arial,sans-serif" font-size="66" font-weight="700" fill="#183e50">Architecture</text>
+  <text x="77" y="358" font-family="Arial,sans-serif" font-size="25" fill="#355b66">Inspectable authority. Replayable proof. Verified remedy.</text>
+  <g transform="translate(77 431)" font-family="Arial,sans-serif">
+    <g>
+      <circle cx="34" cy="34" r="31" fill="#183e50"/>
+      <text x="34" y="41" text-anchor="middle" font-size="18" font-weight="700" fill="#f4f1e8">01</text>
+      <text x="0" y="91" font-size="18" font-weight="700" fill="#183e50">SOURCE</text>
+    </g>
+    <path d="M78 34h95" stroke="#89c7c1" stroke-width="8" stroke-linecap="round"/>
+    <g transform="translate(190)">
+      <circle cx="34" cy="34" r="31" fill="#183e50"/>
+      <text x="34" y="41" text-anchor="middle" font-size="18" font-weight="700" fill="#f4f1e8">02</text>
+      <text x="-5" y="91" font-size="18" font-weight="700" fill="#183e50">EVALUATE</text>
+    </g>
+    <path d="M268 34h95" stroke="#89c7c1" stroke-width="8" stroke-linecap="round"/>
+    <g transform="translate(380)">
+      <circle cx="34" cy="34" r="31" fill="#183e50"/>
+      <text x="34" y="41" text-anchor="middle" font-size="18" font-weight="700" fill="#f4f1e8">03</text>
+      <text x="3" y="91" font-size="18" font-weight="700" fill="#183e50">PROVE</text>
+    </g>
+    <path d="M458 34h95" stroke="#89c7c1" stroke-width="8" stroke-linecap="round"/>
+    <g transform="translate(570)">
+      <circle cx="34" cy="34" r="31" fill="#d59b4c"/>
+      <text x="34" y="42" text-anchor="middle" font-size="27" font-weight="700" fill="#183e50">↺</text>
+      <text x="-3" y="91" font-size="18" font-weight="700" fill="#183e50">REMEDY</text>
+    </g>
+  </g>
+  <g transform="translate(915 176)">
+    <rect width="210" height="264" rx="28" fill="#183e50"/>
+    <path d="M48 73h114M48 132h114M48 191h114" stroke="#89c7c1" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="48" cy="73" r="21" fill="#f4f1e8" stroke="#d59b4c" stroke-width="9"/>
+    <circle cx="105" cy="132" r="25" fill="#f4f1e8" stroke="#d59b4c" stroke-width="9"/>
+    <circle cx="162" cy="191" r="21" fill="#f4f1e8" stroke="#d59b4c" stroke-width="9"/>
+    <path d="M162 73v30c0 17-13 29-30 29h-2M48 191v-30c0-17 13-29 30-29h2" fill="none" stroke="#f4f1e8" stroke-width="9" stroke-linecap="round"/>
+  </g>
+</svg>

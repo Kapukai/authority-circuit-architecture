@@ -40,6 +40,19 @@ chmod +x scripts/package-release.sh
 The `dist/` directory contains a ZIP, a tarball, and outer SHA-256 checksums.
 The packaged directory contains `MANIFEST.sha256` for every included file.
 
+Create the Nginx-ready site-only package:
+
+```bash
+./scripts/package-site.sh
+```
+
+The site package is written under `dist/site/`. Its `authority-circuit/`
+directory maps to the canonical public slug:
+
+```text
+https://kapukai.org/standards/authority-circuit/
+```
+
 ## Verify a candidate
 
 ```bash
@@ -53,10 +66,21 @@ sha256sum --check MANIFEST.sha256
 ## Staging deployment
 
 1. Record the source commit and artifact checksum.
-2. Deploy only the clean candidate artifact to an isolated staging path.
+2. Deploy only the clean site candidate artifact to an isolated staging path.
 3. Verify draft labels, routes, links, responsive behavior, and accessibility.
 4. Confirm no private evidence or secrets are present.
 5. Record acceptance, known limitations, and the intended production target.
+
+Recommended Iceland staging mapping:
+
+```text
+URL:  https://kapukai.org/stage/authority-circuit/
+Root: /var/www/kapukai-staging/authority-circuit/
+```
+
+The staging site must remain visibly labeled as a working draft. Promotion
+copies the exact verified `authority-circuit/` artifact to the production
+`standards/authority-circuit/` path; it does not rebuild source on the server.
 
 Do not deploy directly from a developer Downloads folder, `.next`, or
 `node_modules`. Do not treat a successful build as publication approval.

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Standards Directory — Kapukai Governance Lab</title>
+  <meta name="description" content="Core standards, frameworks, and application surfaces from Kapukai Governance Lab.">
+  <meta name="theme-color" content="#183e50">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kapukai Governance Lab">
+  <meta property="og:title" content="Standards Directory — Kapukai Governance Lab">
+  <meta property="og:description" content="Core standards, frameworks, and application surfaces for inspectable authority, decision integrity, and remedy.">
+  <meta property="og:url" content="https://kapukai.org/standards/">
+  <meta property="og:image" content="https://kapukai.org/standards/assets/previews/standards-directory-v1.png">
+  <meta property="og:image:secure_url" content="https://kapukai.org/standards/assets/previews/standards-directory-v1.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kapukai Governance Lab Standards Directory">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Standards Directory — Kapukai Governance Lab">
+  <meta name="twitter:description" content="Core standards, frameworks, and application surfaces for inspectable authority, decision integrity, and remedy.">
+  <meta name="twitter:image" content="https://kapukai.org/standards/assets/previews/standards-directory-v1.png">
+  <link rel="canonical" href="https://kapukai.org/standards/">
+  <link rel="icon" href="/standards/authority-circuit/assets/aca-mark.svg" type="image/svg+xml">
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --panel:#ffffff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --soft:#f8fafc;
+      --dark:#0f172a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top, rgba(15,23,42,.06), transparent 42%),
+        var(--bg);
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(226,232,240,.85);
+    }
+    .topbar-inner{
+      min-height:72px;
+      display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .kicker{
+      font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#64748b;
+    }
+    .brand{
+      margin-top:4px;font-size:18px;font-weight:700;letter-spacing:-.02em;
+    }
+    .nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;color:#475569}
+    .nav a:hover{color:#0f172a}
+    .hero{padding:88px 0 56px}
+    .pill{
+      display:inline-flex;align-items:center;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      color:#64748b;
+      font-weight:600;
+      box-shadow:0 2px 12px rgba(15,23,42,.04);
+    }
+    h1{
+      margin:18px 0 0;
+      font-size:clamp(42px,7vw,74px);
+      line-height:.98;
+      letter-spacing:-.055em;
+      max-width:920px;
+    }
+    .muted{color:#64748b}
+    .lead{
+      margin-top:24px;
+      max-width:820px;
+      font-size:21px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+    .section{padding:28px 0 72px}
+    .section-title{
+      margin:0 0 20px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#64748b;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow:0 6px 22px rgba(15,23,42,.04);
+      transition:.18s ease;
+    }
+    .card-featured{
+      grid-column:1/-1;
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+      gap:28px;
+      padding:0;
+      overflow:hidden;
+      border-color:#b8d8d4;
+    }
+    .card-featured .card-copy{padding:32px}
+    .card-featured img{
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:310px;
+      object-fit:cover;
+      border-left:1px solid var(--line);
+    }
+    .card:hover{
+      border-color:#cbd5e1;
+      transform:translateY(-1px);
+      box-shadow:0 14px 30px rgba(15,23,42,.06);
+    }
+    .slug{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:#64748b;
+    }
+    h2{
+      margin:14px 0 0;
+      font-size:28px;
+      line-height:1.12;
+      letter-spacing:-.03em;
+    }
+    .body{
+      margin:12px 0 0;
+      font-size:17px;
+      line-height:1.8;
+      color:#475569;
+    }
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:16px;
+      font-size:14px;
+      font-weight:600;
+    }
+    .btn-dark{background:#0f172a;color:#fff}
+    .btn-light{border:1px solid #cbd5e1;background:#fff;color:#334155}
+    .band{
+      background:#fff;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:72px 0;
+      margin-top:10px;
+    }
+    .footer{
+      padding:72px 0;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .card-featured{grid-template-columns:1fr}
+      .card-featured img{min-height:0;border-left:0;border-top:1px solid var(--line)}
+      .nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div>
+        <div class="kicker">Kapukai Governance Lab</div>
+        <div class="brand">Standards Directory</div>
+      </div>
+      <nav class="nav">
+        <a href="/standards/authority-circuit/">Authority Circuit</a>
+        <a href="/observable">Observable</a>
+        <a href="/interlock">Interlock</a>
+        <a href="/authority-os/record">Authority OS</a>
+        <a href="/congress">Congress</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="pill">Standards library</div>
+        <h1>One standard should lead. <span class="muted">The directory should support.</span></h1>
+        <p class="lead">
+          This library separates core standards, technical frameworks, and application surfaces so the canonical pages stay narrow, stable, and reusable.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-title">Core standards</div>
+        <div class="grid">
+          <a class="card card-featured" href="/standards/authority-circuit/">
+            <div class="card-copy">
+              <div class="slug">/standards/authority-circuit</div>
+              <h2>Authority Circuit Architecture</h2>
+              <p class="body">Inspectable source authority, typed evaluation, replayable decision proof, and verified remedy in one closed-loop architecture.</p>
+              <div class="actions">
+                <span class="btn btn-dark">Open working draft</span>
+              </div>
+            </div>
+            <img src="/standards/authority-circuit/assets/aca-directory-card.png" alt="Authority Circuit Architecture: Source, Evaluate, Prove, and Remedy" width="640" height="336">
+          </a>
+
+          <a class="card" href="/observable/">
+            <div class="slug">/observable</div>
+            <h2>Observable Standard</h2>
+            <p class="body">The canonical normative standard for observability, accountability, audit, and correction.</p>
+            <div class="actions">
+              <span class="btn btn-dark">Open page</span>
+            </div>
+          </a>
+
+          <div class="card">
+            <div class="slug">/docs/fmlis-v1.pdf</div>
+            <h2>FMLIS v1</h2>
+            <p class="body">Federal Minimum Learning &amp; Integrity Standard. A measurable, auditable control framework built around Memory, Learning, and Insulation.</p>
+            <div class="actions">
+              <a class="btn btn-dark" href="/docs/federal-minimum-learning-integrity-standard-v1.pdf" target="_blank" rel="noopener">Download PDF</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="slug">/docs/mvs.pdf</div>
+            <h2>Machine Value Score (MVS)</h2>
+            <p class="body">A quantitative governance standard for engineered systems, with thresholds, scoring, and adoption pathways.</p>
+            <div class="actions">
+              <a class="btn btn-dark" href="/docs/machine-value-score-standard-draft.pdf" target="_blank" rel="noopener">Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <div class="section-title">Frameworks</div>
+        <div class="grid">
+          <a class="card" href="/interlock/">
+            <div class="slug">/interlock</div>
+            <h2>Interlock</h2>
+            <p class="body">Verification gates, refusal conditions, and minimal tests for valid authority flow.</p>
+            <div class="actions">
+              <span class="btn btn-dark">Open page</span>
+            </div>
+          </a>
+
+          <div class="card">
+            <div class="slug">Mission-Capable Governance</div>
+            <h2>Mission-Capable Governance</h2>
+            <p class="body">The diagnostic framework: mission capability states, truth architecture, and closed-loop correction.</p>
+          </div>
+
+          <div class="card">
+            <div class="slug">Gradient models</div>
+            <h2>Gradient Frameworks</h2>
+            <p class="body">Mathematical and validation layers for authority gradients, diffusion-style harm, and interlock prioritization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="wrap">
+        <div class="section-title">Application surfaces</div>
+        <div class="grid">
+          <a class="card" href="/authority-os/record">
+            <div class="slug">/authority-os/record</div>
+            <h2>Authority OS / Record</h2>
+            <p class="body">Administrative record architecture, traceability, and structured response surfaces.</p>
+            <div class="actions">
+              <span class="btn btn-light">Open page</span>
+            </div>
+          </a>
+
+          <a class="card" href="/congress">
+            <div class="slug">/congress</div>
+            <h2>Congress</h2>
+            <p class="body">A target-specific application page for institutional bottlenecks and public infrastructure access.</p>
+            <div class="actions">
+              <span class="btn btn-light">Open page</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -34,6 +34,8 @@ jobs:
         run: |
           chmod +x scripts/package-release.sh
           SKIP_PDF_BUILD=1 ./scripts/package-release.sh
+          chmod +x scripts/package-site.sh
+          ./scripts/package-site.sh
 
       - name: Upload candidate release
         uses: actions/upload-artifact@v4
@@ -43,4 +45,7 @@ jobs:
             dist/*.zip
             dist/*.tar.gz
             dist/*.sha256
+            dist/site/*.zip
+            dist/site/*.tar.gz
+            dist/site/*.sha256
           if-no-files-found: error
