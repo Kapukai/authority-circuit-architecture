@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Kapukai Governance Lab Standards Directory</title>
+  <desc id="desc">Core standards, frameworks, and application surfaces.</desc>
+  <rect width="1200" height="630" fill="#f4f1e8"/>
+  <rect width="1200" height="22" fill="#d59b4c"/>
+  <path d="M0 530c240-62 415 58 655-4 250-65 384-18 545 42v62H0z" fill="#dcebea"/>
+  <g transform="translate(74 68)">
+    <rect width="74" height="74" rx="17" fill="#183e50"/>
+    <text x="37" y="53" text-anchor="middle" font-family="Arial,sans-serif" font-size="47" font-weight="700" fill="#f4f1e8">K</text>
+    <text x="98" y="29" font-family="Arial,sans-serif" font-size="21" font-weight="700" letter-spacing="1.5" fill="#183e50">KAPUKAI GOVERNANCE LAB</text>
+    <text x="98" y="58" font-family="Arial,sans-serif" font-size="18" letter-spacing="2.2" fill="#4d6872">PUBLIC SYSTEMS ENGINEERING</text>
+  </g>
+  <text x="74" y="254" font-family="Arial,sans-serif" font-size="69" font-weight="700" fill="#183e50">Standards Directory</text>
+  <text x="77" y="312" font-family="Arial,sans-serif" font-size="26" fill="#355b66">Core standards. Technical frameworks. Application surfaces.</text>
+  <g transform="translate(77 400)" font-family="Arial,sans-serif">
+    <rect width="295" height="112" rx="24" fill="#183e50"/>
+    <text x="28" y="43" font-size="16" font-weight="700" letter-spacing="1.8" fill="#89c7c1">CORE STANDARDS</text>
+    <text x="28" y="78" font-size="23" font-weight="700" fill="#f4f1e8">Authority + proof</text>
+    <rect x="321" width="295" height="112" rx="24" fill="#ffffff" stroke="#b8d8d4" stroke-width="3"/>
+    <text x="349" y="43" font-size="16" font-weight="700" letter-spacing="1.8" fill="#4d6872">FRAMEWORKS</text>
+    <text x="349" y="78" font-size="23" font-weight="700" fill="#183e50">Tests + interlocks</text>
+    <rect x="642" width="340" height="112" rx="24" fill="#ffffff" stroke="#b8d8d4" stroke-width="3"/>
+    <text x="670" y="43" font-size="16" font-weight="700" letter-spacing="1.8" fill="#4d6872">APPLICATIONS</text>
+    <text x="670" y="78" font-size="23" font-weight="700" fill="#183e50">Operational surfaces</text>
+  </g>
+</svg>
