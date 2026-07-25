@@ -34,4 +34,8 @@ find "$OUTPUT/$NAME" \( -name '.DS_Store' -o -name '._*' \) -delete
 )
 
 echo "Site deployment artifacts:"
-find "$OUTPUT" -maxdepth 1 -type f -printf '  %f\n' | sort
+for artifact in "$OUTPUT"/*; do
+  if [ -f "$artifact" ]; then
+    printf '  %s\n' "$(basename "$artifact")"
+  fi
+done
