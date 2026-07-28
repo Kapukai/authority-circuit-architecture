@@ -1,0 +1,2 @@
+[console_scripts]
+kapu-cell = kapu.cli:main

@@ -1,0 +1,63 @@
+{
+  "evaluation_id": "eval-0001",
+  "cell_id": "vac-001",
+  "profile_version": "aca-120-0.2",
+  "rule_version": "rule-1.0",
+  "human_approval_required": true,
+  "predicates": [
+    {
+      "id": "A",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:A"
+    },
+    {
+      "id": "J",
+      "value": "FALSE",
+      "mandatory": true,
+      "source": "source:J"
+    },
+    {
+      "id": "R",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:R"
+    },
+    {
+      "id": "E",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:E"
+    },
+    {
+      "id": "P",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:P"
+    },
+    {
+      "id": "T",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:T"
+    },
+    {
+      "id": "N",
+      "value": "TRUE",
+      "mandatory": true,
+      "source": "source:N"
+    },
+    {
+      "id": "C",
+      "value": "FALSE",
+      "mandatory": true,
+      "source": "source:C"
+    },
+    {
+      "id": "V",
+      "value": "FALSE",
+      "mandatory": true,
+      "source": "source:V"
+    }
+  ]
+}

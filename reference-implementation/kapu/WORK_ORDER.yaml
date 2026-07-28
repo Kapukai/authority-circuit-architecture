@@ -1,0 +1,9 @@
+work_order_id: KAPU-0001
+title: Authority Cell Engine
+status: CANDIDATE
+objective: Implement the first deterministic ACA-120 reference evaluator.
+human_approval_required: true
+limitations:
+  - baseline implementation, not complete ACA-120 conformance
+  - no production execution adapter
+  - no security certification

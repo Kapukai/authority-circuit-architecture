@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/kapu/v0.1/authority-cell-input.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evaluation_id",
+    "cell_id",
+    "profile_version",
+    "rule_version",
+    "predicates"
+  ],
+  "properties": {
+    "evaluation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cell_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_approval_required": {
+      "type": "boolean"
+    },
+    "remedy": {
+      "type": "object"
+    },
+    "predicates": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "value",
+          "mandatory",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "A",
+              "J",
+              "R",
+              "E",
+              "P",
+              "T",
+              "N",
+              "C",
+              "V"
+            ]
+          },
+          "value": {
+            "enum": [
+              "TRUE",
+              "FALSE",
+              "UNKNOWN",
+              "CONFLICTED",
+              "NOT-APPLICABLE"
+            ]
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

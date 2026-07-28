@@ -1,0 +1,529 @@
+{
+  "baseline_tests": {
+    "command": "/Users/lailaainsley/kapukai-engineering-system/.venv/bin/python -m pytest -q tests/schema-contract/test_schema_contract.py",
+    "passed": true,
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "...                                                                      [100%]\n3 passed in 0.04s\n"
+  },
+  "examples": [
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/authority-derivation.valid.json",
+      "schema": "authority-derivation.schema.json",
+      "sha256": "f6fc752e4af6cd3dcb18f588b41d58c03a9674fee757c63425ac7486ac2c66ec"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/authority.valid.json",
+      "schema": "authority.schema.json",
+      "sha256": "ed0bdf993bbed6cc4c35dc71f6269b052516358eb12735a8dd46a8376d78b801"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/change-point.valid.json",
+      "schema": "change-point.schema.json",
+      "sha256": "1371ac915556d4f802867cb1593a42aea07621670cc1f7d8db1f3ff0a0b17556"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/conformance-report.valid.json",
+      "schema": "conformance-report.schema.json",
+      "sha256": "f7de895510f697f89d5e337dd10a9503307d722e1397133a24cef5ef2f3db4c7"
+    },
+    {
+      "classification": "invalid",
+      "file": "examples/v0.1/decision-proof-record.invalid-allow-remedy.json",
+      "schema": "decision-proof-record.schema.json",
+      "sha256": "e9767b8162c87b9057d8719dbf25d415c41a8d190e4060722eb312be6b926ac3"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/decision-proof-record.valid.json",
+      "schema": "decision-proof-record.schema.json",
+      "sha256": "3ddad5d6eb4740a91f19807a18e5ee72462b6c19bc20021d4b73d279364d7497"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/evaluation-request.valid.json",
+      "schema": "evaluation-request.schema.json",
+      "sha256": "d2aa63bb7fdd01c022384810ad6b7cab1fbba8604ce1e5be847d7ae7f7628543"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/evidence.valid.json",
+      "schema": "evidence.schema.json",
+      "sha256": "c281cfc633aed9414fffdc941ef3cbefa9f27294e5249a2e54cd3409934ab28b"
+    },
+    {
+      "classification": "invalid",
+      "file": "examples/v0.1/remedy.invalid-false-closure.json",
+      "schema": "remedy.schema.json",
+      "sha256": "8636b42ee021733e6d0e7a3c092535003b5b033a16663866b9ae5c2dda78802d"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/remedy.valid.json",
+      "schema": "remedy.schema.json",
+      "sha256": "96bf7a3e0bb9b99ec4f3693afaa11b5c44d340bb5fe55ecb6e0f37dabe376df2"
+    },
+    {
+      "classification": "valid",
+      "file": "examples/v0.1/rule-profile.valid.json",
+      "schema": "rule-profile.schema.json",
+      "sha256": "38f165cc081ad0d6e7584fffc87c1be3c8d0347e897e8ef646a230ab80354553"
+    }
+  ],
+  "gaps": {
+    "schemas_without_direct_test": [
+      "authority-derivation.schema.json",
+      "authority.schema.json",
+      "change-point.schema.json",
+      "common-defs.schema.json",
+      "conformance-report.schema.json",
+      "evaluation-request.schema.json",
+      "evidence.schema.json",
+      "rule-profile.schema.json"
+    ],
+    "schemas_without_invalid_example": [
+      "authority-derivation.schema.json",
+      "authority.schema.json",
+      "change-point.schema.json",
+      "common-defs.schema.json",
+      "conformance-report.schema.json",
+      "evaluation-request.schema.json",
+      "evidence.schema.json",
+      "rule-profile.schema.json"
+    ],
+    "schemas_without_valid_example": [
+      "common-defs.schema.json"
+    ],
+    "semantic_gaps_for_aca_120": [
+      "Identity and affected-subject bindings are not uniformly first-class.",
+      "requested_action remains an unconstrained string rather than a taxonomy reference.",
+      "Rule-profile evaluation and state rules remain prose strings, not formal executable semantics.",
+      "Decision authorization and actual execution are not represented as separate mandatory records.",
+      "Replay digests exist, but canonical normalization and equivalence rules require formal specification.",
+      "Schema validation proves structure only; it does not prove factual truth or lawful authority."
+    ],
+    "unresolved_references": {}
+  },
+  "generated_at": "2026-07-28T11:47:04.834653+00:00",
+  "human_approval_required": true,
+  "next_artifact": "ACA-120 Authority Cell Formal Contract",
+  "next_work_order": "ACA-WO-0002",
+  "repository": "/Users/lailaainsley/Kapukai/authority-circuit-architecture",
+  "schemas": [
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/authority-derivation.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/authority-derivation.schema.json",
+      "name": "authority-derivation.schema.json",
+      "properties": [
+        "derivation_id",
+        "edges",
+        "issues",
+        "nodes",
+        "root_authority_id",
+        "verification_status",
+        "verified_at",
+        "verifier"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/authority.schema.json",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "derivation_id",
+        "root_authority_id",
+        "nodes",
+        "edges",
+        "verification_status"
+      ],
+      "sha256": "e3a01eeee56ae62d2abdd9866542666979ae24a5b17cfd9824347bc06ce925cb",
+      "title": "ACA Authority Derivation Graph",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/authority.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/authority.schema.json",
+      "name": "authority.schema.json",
+      "properties": [
+        "accountable_owner",
+        "authority_id",
+        "authority_type",
+        "change_point_refs",
+        "derivation_parent",
+        "effective_period",
+        "effective_status",
+        "integrity",
+        "issuing_authority",
+        "jurisdiction",
+        "remedy_route",
+        "scope",
+        "source_ref",
+        "source_title",
+        "verification_evidence",
+        "version"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/status",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "authority_id",
+        "authority_type",
+        "source_ref",
+        "issuing_authority",
+        "accountable_owner",
+        "scope",
+        "jurisdiction",
+        "effective_status",
+        "version",
+        "remedy_route"
+      ],
+      "sha256": "b40bb6022b721d1dfa0cff270e69adb4f8aa5fe43f7633f2fe8e0a26ed63f939",
+      "title": "ACA Authority Object",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/change-point.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/change-point.schema.json",
+      "name": "change-point.schema.json",
+      "properties": [
+        "approved_at",
+        "authority_for_change",
+        "basis",
+        "change_class",
+        "change_id",
+        "disposition",
+        "effects",
+        "incentives",
+        "initiator",
+        "legal_owner",
+        "monitoring_period",
+        "monitoring_results",
+        "notice_and_review",
+        "prior_version",
+        "proposed_version",
+        "rollback_condition",
+        "technical_owner",
+        "validation_plan"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "change_id",
+        "change_class",
+        "prior_version",
+        "proposed_version",
+        "initiator",
+        "authority_for_change",
+        "legal_owner",
+        "technical_owner",
+        "effects",
+        "validation_plan",
+        "rollback_condition",
+        "disposition"
+      ],
+      "sha256": "d67b476b7416283ca3c82220a4a1c257888056104e082ecc7d7ad5c1c0de68ed",
+      "title": "ACA Change-Point Record",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": null,
+      "conditionals": [],
+      "file": "schemas/v0.1/common-defs.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json",
+      "name": "common-defs.schema.json",
+      "properties": [],
+      "references": [
+        "#/$defs/predicateValue"
+      ],
+      "required": [],
+      "sha256": "1ec1b695880418c7e28ae714350c373a6f61fd89a6ffac71e023682ba2920dd6",
+      "title": "ACA Common Definitions",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/conformance-report.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/conformance-report.schema.json",
+      "name": "conformance-report.schema.json",
+      "properties": [
+        "assessment_type",
+        "claim_scope",
+        "conformance_level",
+        "implementation",
+        "integrity",
+        "operator",
+        "overall_result",
+        "profile",
+        "report_id",
+        "standards",
+        "test_environment",
+        "tested_at",
+        "tests",
+        "unresolved_deviations"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/decisionState",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "report_id",
+        "claim_scope",
+        "conformance_level",
+        "implementation",
+        "standards",
+        "profile",
+        "test_environment",
+        "tests",
+        "overall_result",
+        "assessment_type",
+        "tested_at"
+      ],
+      "sha256": "32e8de243234cc46462690e3d86721a1d4b9a19058a4b777b1536d4c40dd7215",
+      "title": "ACA Conformance Report",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [
+        "IF {\"properties\": {\"final_state\": {\"const\": \"ALLOW\"}}} THEN {\"properties\": {\"remedy_status\": {\"properties\": {\"status\": {\"const\": \"NOT_REQUIRED\"}}}}}",
+        "IF {\"properties\": {\"final_state\": {\"not\": {\"const\": \"ALLOW\"}}}} THEN {\"properties\": {\"remedy_status\": {\"properties\": {\"status\": {\"not\": {\"const\": \"NOT_REQUIRED\"}}}}}}"
+      ],
+      "file": "schemas/v0.1/decision-proof-record.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/decision-proof-record.schema.json",
+      "name": "decision-proof-record.schema.json",
+      "properties": [
+        "aca_version",
+        "authority_derivation_id",
+        "authority_refs",
+        "conflicts",
+        "controlling_reasons",
+        "evaluated_at",
+        "evidence_refs",
+        "expirations",
+        "final_state",
+        "implementation",
+        "integrity",
+        "predicate_results",
+        "profile",
+        "record_id",
+        "remedy_status",
+        "replay",
+        "requested_action",
+        "revocations",
+        "rule_refs",
+        "unknowns"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/decisionState",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/predicateResult",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/reason",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "record_id",
+        "aca_version",
+        "implementation",
+        "profile",
+        "requested_action",
+        "authority_derivation_id",
+        "evaluated_at",
+        "predicate_results",
+        "final_state",
+        "controlling_reasons",
+        "remedy_status",
+        "replay"
+      ],
+      "sha256": "65b47103a56dfeb62f5c1fe0e58d47241812aca418328b9a976946d68c19b8da",
+      "title": "ACA Decision Proof Record",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/evaluation-request.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/evaluation-request.schema.json",
+      "name": "evaluation-request.schema.json",
+      "properties": [
+        "authority_derivation",
+        "context",
+        "evidence",
+        "profile_id",
+        "profile_version",
+        "request_id",
+        "requested_action",
+        "requested_at",
+        "requestor"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/authority-derivation.schema.json",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp",
+        "https://schemas.kapukai.org/aca/v0.1/evidence.schema.json"
+      ],
+      "required": [
+        "request_id",
+        "requested_action",
+        "profile_id",
+        "profile_version",
+        "authority_derivation",
+        "evidence",
+        "requested_at"
+      ],
+      "sha256": "1d56b314b20dc6c64b5ab4e6009802d441ffb5211112d9b0d45d642a5d511439",
+      "title": "ACA Evaluation Request",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/evidence.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/evidence.schema.json",
+      "name": "evidence.schema.json",
+      "properties": [
+        "access_class",
+        "asserted_value",
+        "collected_at",
+        "evidence_id",
+        "evidence_type",
+        "integrity",
+        "observed_at",
+        "provenance_refs",
+        "source",
+        "status"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/evidenceStatus",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "asserted_value",
+        "source",
+        "status"
+      ],
+      "sha256": "9f07643d4e0639b819440f2406e9ffa1bc70d88fe5978c0b5da7c08eeb6c57fb",
+      "title": "ACA Evidence Object",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [
+        "IF {\"properties\": {\"status\": {\"const\": \"COMPLETED\"}}} THEN {\"properties\": {\"completion_evidence\": {\"minItems\": 1}, \"verification_result\": {\"const\": \"VERIFIED_COMPLETE\"}}, \"required\": [\"completion_evidence\", \"verification_result\", \"closed_at\"]}"
+      ],
+      "file": "schemas/v0.1/remedy.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/remedy.schema.json",
+      "name": "remedy.schema.json",
+      "properties": [
+        "affected_records",
+        "closed_at",
+        "closure_criteria",
+        "completion_evidence",
+        "deadline",
+        "downstream_dependencies",
+        "error_class",
+        "escalation_route",
+        "independent_verifier",
+        "remedy_id",
+        "required_action",
+        "responsible_actor",
+        "status",
+        "triggering_decision_id",
+        "verification_result"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+      ],
+      "required": [
+        "remedy_id",
+        "triggering_decision_id",
+        "status",
+        "responsible_actor",
+        "required_action",
+        "closure_criteria",
+        "escalation_route"
+      ],
+      "sha256": "eba43671dec0abdfe5be188195064df002eb23351474237b1a809d48927c1e5d",
+      "title": "ACA Remedy Execution Record",
+      "unresolved_local_references": []
+    },
+    {
+      "additional_properties": false,
+      "conditionals": [],
+      "file": "schemas/v0.1/rule-profile.schema.json",
+      "id": "https://schemas.kapukai.org/aca/v0.1/rule-profile.schema.json",
+      "name": "rule-profile.schema.json",
+      "properties": [
+        "authority_requirements",
+        "authority_source_refs",
+        "change_point_refs",
+        "integrity",
+        "precedence",
+        "predicates",
+        "profile_id",
+        "remedy_mappings",
+        "state_rules",
+        "status",
+        "supported_actions",
+        "version"
+      ],
+      "references": [
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/decisionState",
+        "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest"
+      ],
+      "required": [
+        "profile_id",
+        "version",
+        "supported_actions",
+        "authority_requirements",
+        "predicates",
+        "precedence",
+        "state_rules",
+        "remedy_mappings"
+      ],
+      "sha256": "d51d9c07300e6db80d9159904c562c143136d088344ee9b1f1a4d148b868df1f",
+      "title": "ACA Rule Profile",
+      "unresolved_local_references": []
+    }
+  ],
+  "source_unchanged": true,
+  "tests": [
+    {
+      "example": "decision-proof-record.valid.json",
+      "function": "test_valid_dpr",
+      "schema": "decision-proof-record.schema.json"
+    },
+    {
+      "example": "decision-proof-record.invalid-allow-remedy.json",
+      "function": "test_allow_open_remedy_invalid",
+      "schema": "decision-proof-record.schema.json"
+    },
+    {
+      "example": "remedy.invalid-false-closure.json",
+      "function": "test_false_remedy_closure_invalid",
+      "schema": "remedy.schema.json"
+    }
+  ],
+  "work_order_id": "ACA-WO-0001"
+}
