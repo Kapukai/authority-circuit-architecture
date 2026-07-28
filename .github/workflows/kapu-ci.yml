@@ -1,0 +1,39 @@
+name: KAPU CI
+on:
+  push:
+    branches: [main, "implementation/**"]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: reference-implementation/kapu/pyproject.toml
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -e "reference-implementation/kapu[dev]"
+      - name: Test
+        working-directory: reference-implementation/kapu
+        run: python -m pytest -q
+      - name: Verify deterministic DPR
+        working-directory: reference-implementation/kapu
+        run: |
+          python -m kapu.cli examples/allow.json > /tmp/decision.json
+          python -m kapu.dpr_cli build /tmp/decision.json --created-at 2026-07-28T12:00:00+00:00 > /tmp/dpr-a.json
+          python -m kapu.dpr_cli verify /tmp/dpr-a.json
+          python -m kapu.dpr_cli build /tmp/decision.json --created-at 2026-07-28T12:00:00+00:00 > /tmp/dpr-b.json
+          cmp /tmp/dpr-a.json /tmp/dpr-b.json
+      - name: Reject tracked build artifacts
+        run: |
+          if git ls-files | grep -E '(^|/).*\.egg-info/'; then exit 1; fi
