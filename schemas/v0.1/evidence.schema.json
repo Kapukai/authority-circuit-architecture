@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/evidence.schema.json",
+  "title": "ACA Evidence Object",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "evidence_type",
+    "asserted_value",
+    "source",
+    "status"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asserted_value": {},
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_type"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_type": {
+          "enum": [
+            "DOCUMENT",
+            "SYSTEM",
+            "HUMAN",
+            "SENSOR",
+            "RECORD",
+            "OTHER"
+          ]
+        },
+        "custodian": {
+          "type": "string"
+        },
+        "acquisition_method": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "observed_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "collected_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "status": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/evidenceStatus"
+    },
+    "provenance_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "access_class": {
+      "enum": [
+        "PUBLIC",
+        "RESTRICTED",
+        "CONFIDENTIAL",
+        "SEALED"
+      ]
+    },
+    "integrity": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/evaluation-request.schema.json",
+  "title": "ACA Evaluation Request",
+  "type": "object",
+  "required": [
+    "request_id",
+    "requested_action",
+    "profile_id",
+    "profile_version",
+    "authority_derivation",
+    "evidence",
+    "requested_at"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_derivation": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/authority-derivation.schema.json"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.kapukai.org/aca/v0.1/evidence.schema.json"
+      }
+    },
+    "requested_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "requestor": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "context": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

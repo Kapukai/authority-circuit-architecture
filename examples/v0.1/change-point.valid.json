@@ -1,0 +1,59 @@
+{
+  "change_id": "CPR-2026-0001",
+  "change_class": "RULE_BEHAVIOR",
+  "prior_version": "0.1.0",
+  "proposed_version": "0.2.0",
+  "initiator": {
+    "actor_id": "institution:kapukai",
+    "actor_type": "INSTITUTION",
+    "display_name": "Kapukai Governance Lab",
+    "role": "standards-maintainer"
+  },
+  "authority_for_change": "ACA governance process",
+  "legal_owner": {
+    "actor_id": "role:legal-owner",
+    "actor_type": "ROLE",
+    "role": "legal-owner"
+  },
+  "technical_owner": {
+    "actor_id": "role:technical-owner",
+    "actor_type": "ROLE",
+    "role": "technical-owner"
+  },
+  "basis": {
+    "legal": [],
+    "policy": [
+      "Clarify correction handling"
+    ],
+    "technical": [
+      "Remove ambiguous predicate coercion"
+    ],
+    "evidentiary": [],
+    "fiscal": []
+  },
+  "effects": {
+    "legal_effect": "No intended legal effect.",
+    "technical_effect": "UNKNOWN remains distinct from FALSE.",
+    "affected_rights_or_duties": [],
+    "affected_populations": [],
+    "affected_records": [
+      "future Decision Proof Records"
+    ],
+    "downstream_systems": [
+      "reference evaluator"
+    ]
+  },
+  "incentives": {
+    "budgetary": [],
+    "contractual": [],
+    "performance": [],
+    "political": [],
+    "private_financial": []
+  },
+  "validation_plan": "Run all conformance vectors and replay tests.",
+  "rollback_condition": "Any unexplained material divergence.",
+  "notice_and_review": "Public pull request review.",
+  "monitoring_period": "One release cycle.",
+  "disposition": "PROPOSED",
+  "monitoring_results": []
+}

@@ -1,0 +1,62 @@
+{
+  "derivation_id": "DERIV-FILING-001",
+  "root_authority_id": "AUTH-FILING-001",
+  "nodes": [
+    {
+      "authority_id": "AUTH-FILING-001",
+      "authority_type": "OPERATIONAL",
+      "source_ref": "source:filing-rule-2026-01",
+      "source_title": "Illustrative Filing Completeness Rule",
+      "issuing_authority": {
+        "actor_id": "institution:kapukai",
+        "actor_type": "INSTITUTION",
+        "display_name": "Kapukai Governance Lab",
+        "role": "standards-maintainer"
+      },
+      "accountable_owner": {
+        "actor_id": "institution:kapukai",
+        "actor_type": "INSTITUTION",
+        "display_name": "Kapukai Governance Lab",
+        "role": "standards-maintainer"
+      },
+      "scope": {
+        "permitted_actions": [
+          "filing.accept-for-processing"
+        ],
+        "prohibited_actions": [
+          "filing.determine-legal-merits"
+        ],
+        "constraints": [
+          "No merits determination"
+        ]
+      },
+      "jurisdiction": [
+        "profile:filing-completeness"
+      ],
+      "effective_status": "ACTIVE",
+      "version": "0.1.0",
+      "derivation_parent": null,
+      "verification_evidence": [
+        "EVID-RULE-001"
+      ],
+      "change_point_refs": [],
+      "remedy_route": {
+        "route_id": "remedy:filing-review",
+        "responsible_role": "filing-reviewer",
+        "closure_criteria": [
+          "Missing item supplied or omission confirmed"
+        ]
+      }
+    }
+  ],
+  "edges": [],
+  "verification_status": "VERIFIED",
+  "verified_at": "2026-07-19T18:00:00Z",
+  "verifier": {
+    "actor_id": "institution:kapukai",
+    "actor_type": "INSTITUTION",
+    "display_name": "Kapukai Governance Lab",
+    "role": "standards-maintainer"
+  },
+  "issues": []
+}

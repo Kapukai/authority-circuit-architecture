@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json",
+  "title": "ACA Common Definitions",
+  "type": "object",
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "digest": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha256",
+            "sha384",
+            "sha512"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "predicateValue": {
+      "enum": [
+        "TRUE",
+        "FALSE",
+        "UNKNOWN",
+        "CONFLICT",
+        "EXPIRED",
+        "REVOKED"
+      ]
+    },
+    "decisionState": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "HOLD",
+        "CONFLICT",
+        "REVOKED",
+        "ESCALATE"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "EXPIRED",
+        "SUSPENDED",
+        "REVOKED",
+        "UNKNOWN"
+      ]
+    },
+    "evidenceStatus": {
+      "enum": [
+        "VERIFIED",
+        "DISPUTED",
+        "INFERRED",
+        "UNKNOWN",
+        "SUPERSEDED",
+        "REJECTED"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "required": [
+        "actor_id",
+        "actor_type"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor_type": {
+          "enum": [
+            "HUMAN",
+            "INSTITUTION",
+            "SERVICE",
+            "ROLE"
+          ]
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "reason": {
+      "type": "object",
+      "required": [
+        "code",
+        "summary"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "predicateResult": {
+      "type": "object",
+      "required": [
+        "predicate_id",
+        "value",
+        "material"
+      ],
+      "properties": {
+        "predicate_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "$ref": "#/$defs/predicateValue"
+        },
+        "material": {
+          "type": "boolean"
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

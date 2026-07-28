@@ -1,0 +1,24 @@
+{
+  "remedy_id": "RER-INVALID-CLOSED",
+  "triggering_decision_id": "DPR-2026-0001",
+  "error_class": "MISSING_OR_DEFECTIVE_INPUT",
+  "status": "COMPLETED",
+  "responsible_actor": {
+    "actor_id": "role:filer",
+    "actor_type": "ROLE",
+    "role": "filer"
+  },
+  "required_action": "Supply a valid signature.",
+  "deadline": "2026-07-26T23:59:59Z",
+  "affected_records": [
+    "record:filing-001"
+  ],
+  "downstream_dependencies": [],
+  "completion_evidence": [],
+  "closure_criteria": [
+    "Signed form received",
+    "Receipt recorded"
+  ],
+  "verification_result": "NOT_REVIEWED",
+  "escalation_route": "filing-review-supervisor"
+}

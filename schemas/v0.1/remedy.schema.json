@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/remedy.schema.json",
+  "title": "ACA Remedy Execution Record",
+  "type": "object",
+  "required": [
+    "remedy_id",
+    "triggering_decision_id",
+    "status",
+    "responsible_actor",
+    "required_action",
+    "closure_criteria",
+    "escalation_route"
+  ],
+  "properties": {
+    "remedy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "triggering_decision_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "error_class": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "AVAILABLE",
+        "OPEN",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "OVERDUE",
+        "ESCALATED",
+        "UNAVAILABLE"
+      ]
+    },
+    "responsible_actor": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "required_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deadline": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "affected_records": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completion_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "closure_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "independent_verifier": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "verification_result": {
+      "enum": [
+        "NOT_REVIEWED",
+        "VERIFIED_COMPLETE",
+        "INCOMPLETE",
+        "FAILED"
+      ]
+    },
+    "closed_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "escalation_route": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "COMPLETED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "completion_evidence",
+          "verification_result",
+          "closed_at"
+        ],
+        "properties": {
+          "completion_evidence": {
+            "minItems": 1
+          },
+          "verification_result": {
+            "const": "VERIFIED_COMPLETE"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

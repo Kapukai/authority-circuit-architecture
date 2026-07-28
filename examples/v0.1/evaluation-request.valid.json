@@ -1,0 +1,100 @@
+{
+  "request_id": "REQ-FILING-001",
+  "requested_action": "filing.accept-for-processing",
+  "profile_id": "ACA-PROFILE-FILING-COMPLETENESS",
+  "profile_version": "0.1.0",
+  "authority_derivation": {
+    "derivation_id": "DERIV-FILING-001",
+    "root_authority_id": "AUTH-FILING-001",
+    "nodes": [
+      {
+        "authority_id": "AUTH-FILING-001",
+        "authority_type": "OPERATIONAL",
+        "source_ref": "source:filing-rule-2026-01",
+        "source_title": "Illustrative Filing Completeness Rule",
+        "issuing_authority": {
+          "actor_id": "institution:kapukai",
+          "actor_type": "INSTITUTION",
+          "display_name": "Kapukai Governance Lab",
+          "role": "standards-maintainer"
+        },
+        "accountable_owner": {
+          "actor_id": "institution:kapukai",
+          "actor_type": "INSTITUTION",
+          "display_name": "Kapukai Governance Lab",
+          "role": "standards-maintainer"
+        },
+        "scope": {
+          "permitted_actions": [
+            "filing.accept-for-processing"
+          ],
+          "prohibited_actions": [
+            "filing.determine-legal-merits"
+          ],
+          "constraints": [
+            "No merits determination"
+          ]
+        },
+        "jurisdiction": [
+          "profile:filing-completeness"
+        ],
+        "effective_status": "ACTIVE",
+        "version": "0.1.0",
+        "derivation_parent": null,
+        "verification_evidence": [
+          "EVID-RULE-001"
+        ],
+        "change_point_refs": [],
+        "remedy_route": {
+          "route_id": "remedy:filing-review",
+          "responsible_role": "filing-reviewer",
+          "closure_criteria": [
+            "Missing item supplied or omission confirmed"
+          ]
+        }
+      }
+    ],
+    "edges": [],
+    "verification_status": "VERIFIED",
+    "verified_at": "2026-07-19T18:00:00Z",
+    "verifier": {
+      "actor_id": "institution:kapukai",
+      "actor_type": "INSTITUTION",
+      "display_name": "Kapukai Governance Lab",
+      "role": "standards-maintainer"
+    },
+    "issues": []
+  },
+  "evidence": [
+    {
+      "evidence_id": "EVID-FORM-001",
+      "evidence_type": "filing.form",
+      "asserted_value": {
+        "submitted": true,
+        "signature_present": false
+      },
+      "source": {
+        "source_id": "record:filing-001",
+        "source_type": "RECORD",
+        "custodian": "filing-office",
+        "acquisition_method": "system-export"
+      },
+      "observed_at": "2026-07-19T18:01:00Z",
+      "collected_at": "2026-07-19T18:01:30Z",
+      "status": "VERIFIED",
+      "provenance_refs": [
+        "log:filing-001"
+      ],
+      "access_class": "RESTRICTED"
+    }
+  ],
+  "requested_at": "2026-07-19T18:02:00Z",
+  "requestor": {
+    "actor_id": "role:filer",
+    "actor_type": "ROLE",
+    "role": "filer"
+  },
+  "context": {
+    "filing_id": "filing-001"
+  }
+}

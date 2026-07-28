@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/authority.schema.json",
+  "title": "ACA Authority Object",
+  "type": "object",
+  "required": [
+    "authority_id",
+    "authority_type",
+    "source_ref",
+    "issuing_authority",
+    "accountable_owner",
+    "scope",
+    "jurisdiction",
+    "effective_status",
+    "version",
+    "remedy_route"
+  ],
+  "properties": {
+    "authority_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_type": {
+      "enum": [
+        "FOUNDATIONAL",
+        "DELEGATED",
+        "OPERATIONAL",
+        "CONTRACTUAL",
+        "ORGANIZATIONAL",
+        "OTHER"
+      ]
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_title": {
+      "type": "string"
+    },
+    "issuing_authority": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "accountable_owner": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "permitted_actions",
+        "prohibited_actions"
+      ],
+      "properties": {
+        "permitted_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "prohibited_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "jurisdiction": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "effective_period": {
+      "type": "object",
+      "properties": {
+        "starts_at": {
+          "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+        },
+        "ends_at": {
+          "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+        }
+      },
+      "additionalProperties": false
+    },
+    "effective_status": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/status"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "derivation_parent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "change_point_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "remedy_route": {
+      "type": "object",
+      "required": [
+        "route_id",
+        "responsible_role"
+      ],
+      "properties": {
+        "route_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "responsible_role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deadline_rule": {
+          "type": "string"
+        },
+        "closure_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "integrity": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest"
+    }
+  },
+  "additionalProperties": false
+}

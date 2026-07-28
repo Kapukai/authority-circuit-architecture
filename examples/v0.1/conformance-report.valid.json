@@ -1,0 +1,49 @@
+{
+  "report_id": "CONF-2026-0001",
+  "claim_scope": "Schema validation only",
+  "conformance_level": 1,
+  "implementation": {
+    "implementation_id": "aca-reference-python",
+    "version": "0.1.0",
+    "build_id": "example"
+  },
+  "standards": [
+    {
+      "standard_id": "ACA-090",
+      "version": "0.1.0"
+    },
+    {
+      "standard_id": "ACA-140",
+      "version": "0.1.0"
+    },
+    {
+      "standard_id": "ACA-170",
+      "version": "0.1.0"
+    }
+  ],
+  "profile": {
+    "profile_id": "ACA-PROFILE-FILING-COMPLETENESS",
+    "version": "0.1.0"
+  },
+  "test_environment": {
+    "python": "3.12",
+    "jsonschema": "4.x"
+  },
+  "tests": [
+    {
+      "vector_id": "SCHEMA-DPR-001",
+      "expected_state": "HOLD",
+      "actual_state": "HOLD",
+      "result": "PASS"
+    }
+  ],
+  "overall_result": "PASS",
+  "unresolved_deviations": [],
+  "assessment_type": "SELF_ASSESSMENT",
+  "operator": {
+    "actor_id": "service:aca-reference",
+    "actor_type": "SERVICE",
+    "role": "evaluator"
+  },
+  "tested_at": "2026-07-19T18:10:00Z"
+}

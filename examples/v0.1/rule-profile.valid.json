@@ -1,0 +1,61 @@
+{
+  "profile_id": "ACA-PROFILE-FILING-COMPLETENESS",
+  "version": "0.1.0",
+  "status": "WORKING_DRAFT",
+  "supported_actions": [
+    "filing.accept-for-processing"
+  ],
+  "authority_requirements": [
+    "authority.valid"
+  ],
+  "predicates": [
+    {
+      "predicate_id": "authority.valid",
+      "required": true,
+      "kind": "OBJECTIVE",
+      "evaluation": "authority derivation status is VERIFIED",
+      "correctable": false
+    },
+    {
+      "predicate_id": "form.submitted",
+      "required": true,
+      "kind": "EVIDENTIARY",
+      "evaluation": "filing form exists",
+      "evidence_types": [
+        "filing.form"
+      ],
+      "correctable": true
+    },
+    {
+      "predicate_id": "signature.present",
+      "required": true,
+      "kind": "EVIDENTIARY",
+      "evaluation": "signature is present",
+      "evidence_types": [
+        "filing.form"
+      ],
+      "correctable": true
+    }
+  ],
+  "precedence": [
+    "REVOKED",
+    "CONFLICT",
+    "ESCALATE",
+    "DENY",
+    "HOLD",
+    "ALLOW"
+  ],
+  "state_rules": {
+    "ALLOW": "all mandatory predicates TRUE",
+    "HOLD": "one or more correctable predicates UNKNOWN or FALSE",
+    "ESCALATE": "action outside profile or authority unresolved"
+  },
+  "remedy_mappings": {
+    "HOLD": "supply-missing-or-defective-item",
+    "ESCALATE": "route-to-authorized-review"
+  },
+  "authority_source_refs": [
+    "source:filing-rule-2026-01"
+  ],
+  "change_point_refs": []
+}

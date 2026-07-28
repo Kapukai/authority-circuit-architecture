@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/conformance-report.schema.json",
+  "title": "ACA Conformance Report",
+  "type": "object",
+  "required": [
+    "report_id",
+    "claim_scope",
+    "conformance_level",
+    "implementation",
+    "standards",
+    "profile",
+    "test_environment",
+    "tests",
+    "overall_result",
+    "assessment_type",
+    "tested_at"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conformance_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "implementation": {
+      "type": "object",
+      "required": [
+        "implementation_id",
+        "version"
+      ],
+      "properties": {
+        "implementation_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "build_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "standards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "standard_id",
+          "version"
+        ],
+        "properties": {
+          "standard_id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "profile": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "version"
+      ],
+      "properties": {
+        "profile_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "test_environment": {
+      "type": "object"
+    },
+    "tests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "vector_id",
+          "expected_state",
+          "actual_state",
+          "result"
+        ],
+        "properties": {
+          "vector_id": {
+            "type": "string"
+          },
+          "expected_state": {
+            "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/decisionState"
+          },
+          "actual_state": {
+            "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/decisionState"
+          },
+          "result": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "ERROR"
+            ]
+          },
+          "deviation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "overall_result": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "PASS_WITH_DEVIATIONS"
+      ]
+    },
+    "unresolved_deviations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assessment_type": {
+      "enum": [
+        "SELF_ASSESSMENT",
+        "INDEPENDENT"
+      ]
+    },
+    "operator": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "tested_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "integrity": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/digest"
+    }
+  },
+  "additionalProperties": false
+}

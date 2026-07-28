@@ -1,0 +1,21 @@
+{
+  "evidence_id": "EVID-FORM-001",
+  "evidence_type": "filing.form",
+  "asserted_value": {
+    "submitted": true,
+    "signature_present": false
+  },
+  "source": {
+    "source_id": "record:filing-001",
+    "source_type": "RECORD",
+    "custodian": "filing-office",
+    "acquisition_method": "system-export"
+  },
+  "observed_at": "2026-07-19T18:01:00Z",
+  "collected_at": "2026-07-19T18:01:30Z",
+  "status": "VERIFIED",
+  "provenance_refs": [
+    "log:filing-001"
+  ],
+  "access_class": "RESTRICTED"
+}

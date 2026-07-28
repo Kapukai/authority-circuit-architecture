@@ -1,0 +1,82 @@
+{
+  "record_id": "DPR-INVALID-ALLOW",
+  "aca_version": "0.1.0",
+  "implementation": {
+    "implementation_id": "aca-reference-python",
+    "version": "0.1.0",
+    "build_id": "example"
+  },
+  "profile": {
+    "profile_id": "ACA-PROFILE-FILING-COMPLETENESS",
+    "version": "0.1.0"
+  },
+  "requested_action": "filing.accept-for-processing",
+  "authority_derivation_id": "DERIV-FILING-001",
+  "authority_refs": [
+    "AUTH-FILING-001"
+  ],
+  "rule_refs": [
+    "ACA-PROFILE-FILING-COMPLETENESS@0.1.0"
+  ],
+  "evidence_refs": [
+    "EVID-FORM-001"
+  ],
+  "evaluated_at": "2026-07-19T18:03:00Z",
+  "predicate_results": [
+    {
+      "predicate_id": "authority.valid",
+      "value": "TRUE",
+      "material": true,
+      "reason": "Verified derivation"
+    },
+    {
+      "predicate_id": "form.submitted",
+      "value": "TRUE",
+      "material": true,
+      "evidence_refs": [
+        "EVID-FORM-001"
+      ]
+    },
+    {
+      "predicate_id": "signature.present",
+      "value": "FALSE",
+      "material": true,
+      "evidence_refs": [
+        "EVID-FORM-001"
+      ],
+      "reason": "Signature absent"
+    }
+  ],
+  "final_state": "ALLOW",
+  "controlling_reasons": [
+    {
+      "code": "SIGNATURE_MISSING",
+      "summary": "A required correctable signature is absent.",
+      "rule_id": "signature.present",
+      "evidence_refs": [
+        "EVID-FORM-001"
+      ]
+    }
+  ],
+  "unknowns": [],
+  "conflicts": [],
+  "expirations": [],
+  "revocations": [],
+  "remedy_status": {
+    "status": "OPEN",
+    "route": "should-not-exist"
+  },
+  "replay": {
+    "normalized_input_digest": {
+      "algorithm": "sha256",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "material_output_digest": {
+      "algorithm": "sha256",
+      "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "compatible_implementation_versions": [
+      "0.1.x"
+    ]
+  }
+}

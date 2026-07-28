@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.kapukai.org/aca/v0.1/change-point.schema.json",
+  "title": "ACA Change-Point Record",
+  "type": "object",
+  "required": [
+    "change_id",
+    "change_class",
+    "prior_version",
+    "proposed_version",
+    "initiator",
+    "authority_for_change",
+    "legal_owner",
+    "technical_owner",
+    "effects",
+    "validation_plan",
+    "rollback_condition",
+    "disposition"
+  ],
+  "properties": {
+    "change_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "change_class": {
+      "enum": [
+        "EDITORIAL",
+        "RULE_BEHAVIOR",
+        "AUTHORITY_SCOPE",
+        "EVIDENCE_STANDARD",
+        "REMEDY_RESTRICTION",
+        "FINANCIAL_INCENTIVE",
+        "OTHER"
+      ]
+    },
+    "prior_version": {
+      "type": "string"
+    },
+    "proposed_version": {
+      "type": "string"
+    },
+    "initiator": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "authority_for_change": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legal_owner": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "technical_owner": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/actor"
+    },
+    "basis": {
+      "type": "object",
+      "properties": {
+        "legal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "technical": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidentiary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fiscal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "effects": {
+      "type": "object",
+      "required": [
+        "legal_effect",
+        "technical_effect"
+      ],
+      "properties": {
+        "legal_effect": {
+          "type": "string"
+        },
+        "technical_effect": {
+          "type": "string"
+        },
+        "affected_rights_or_duties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "affected_populations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "affected_records": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "downstream_systems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "incentives": {
+      "type": "object",
+      "properties": {
+        "budgetary": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contractual": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "performance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "political": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "private_financial": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "validation_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rollback_condition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notice_and_review": {
+      "type": "string"
+    },
+    "monitoring_period": {
+      "type": "string"
+    },
+    "disposition": {
+      "enum": [
+        "PROPOSED",
+        "APPROVED",
+        "REVISED",
+        "REJECTED",
+        "ROLLED_BACK"
+      ]
+    },
+    "approved_at": {
+      "$ref": "https://schemas.kapukai.org/aca/v0.1/common-defs.schema.json#/$defs/timestamp"
+    },
+    "monitoring_results": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
