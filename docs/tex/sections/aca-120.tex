@@ -1,27 +1,446 @@
 \chapter{ACA-120 --- Verifiable Authority Cell}
-\section{Canonical inputs}
+
+\section{Scope}
+This chapter defines the normative contract for a Verifiable Authority Cell
+(VAC). A VAC is the smallest reusable ACA decision primitive that evaluates a
+declared set of authority, jurisdiction, rule, evidence, procedure, time,
+notice, conflict, and prohibition predicates and emits a canonical decision
+state with sufficient proof and remedy metadata for independent inspection.
+
+A conforming VAC does not determine whether an assertion is true merely because
+it is well formed, signed, or hashed. It evaluates declared inputs under a
+versioned profile and records the basis, limits, and consequences of that
+evaluation.
+
+\section{Conformance language}
+The key words SHALL, SHALL NOT, SHOULD, SHOULD NOT, and MAY are to be
+interpreted as normative requirements. A deployment claiming ACA-120
+conformance SHALL identify the profile, schema version, rule version,
+evaluator version, and conformance-test version used for each evaluation.
+
+\begin{requirement}[ACA-120-001]
+A conforming implementation SHALL satisfy every applicable SHALL and SHALL NOT
+requirement in this chapter and SHALL produce evidence sufficient to verify that
+claim.
+\end{requirement}
+
+\begin{requirement}[ACA-120-002]
+A profile MAY add constraints or safe states, but it SHALL NOT weaken a baseline
+safety requirement, erase provenance, reinterpret a canonical state, or permit
+an action that the baseline contract requires to be held, denied, revoked, or
+escalated.
+\end{requirement}
+
+\section{Authority Cell identity and boundary}
+Each VAC evaluation SHALL have a unique cell identifier and evaluation
+identifier. The cell identifier names the reusable decision primitive; the
+evaluation identifier names one execution of that primitive.
+
+\begin{requirement}[ACA-120-003]
+The cell boundary SHALL declare its inputs, outputs, governing profile,
+authoritative rule sources, required evidence classes, permitted callers,
+permitted downstream actions, and remedy route.
+\end{requirement}
+
+\begin{requirement}[ACA-120-004]
+Inputs not declared by the governing profile SHALL NOT silently influence the
+evaluation. Any external human or automated influence SHALL be represented as a
+versioned input, override, or review event.
+\end{requirement}
+
+\section{Canonical predicate model}
 A baseline cell evaluates:
 \[
 I=\{A,J,R,E,P,T,N,C,V\}
 \]
-where $A$ is authority validity, $J$ jurisdiction, $R$ rule applicability, $E$ evidence sufficiency, $P$ required procedure, $T$ temporal validity, $N$ notice and review, $C$ conflict state, and $V$ revocation or prohibition.
+where $A$ is authority validity, $J$ jurisdiction, $R$ rule applicability, $E$
+evidence sufficiency, $P$ required procedure, $T$ temporal validity, $N$ notice
+and review, $C$ conflict state, and $V$ revocation or prohibition.
 
-\section{Allow expression}
-For profiles that permit Boolean authorization:
+Each material predicate SHALL include:
+\begin{enumerate}
+\item a stable predicate identifier;
+\item a declared type and value domain;
+\item whether it is mandatory or advisory;
+\item the rule or profile provision that requires it;
+\item its evaluated value;
+\item the evidence or authority references used;
+\item the evaluator identity and evaluation time;
+\item its confidence, uncertainty, or non-computability status where applicable;
+\item an explanation code suitable for testing and review.
+\end{enumerate}
+
+\begin{requirement}[ACA-120-005]
+Predicate values SHALL be drawn from a declared finite domain. The baseline
+domain SHALL distinguish at least \state{TRUE}, \state{FALSE},
+\state{UNKNOWN}, \state{CONFLICTED}, and \state{NOT-APPLICABLE}.
+\end{requirement}
+
+\begin{requirement}[ACA-120-006]
+A mandatory predicate with value \state{UNKNOWN} SHALL prevent
+\state{ALLOW}.
+\end{requirement}
+
+\begin{requirement}[ACA-120-007]
+A mandatory predicate with value \state{CONFLICTED} SHALL produce
+\state{CONFLICT} unless a profile defines a higher-priority safe state.
+\end{requirement}
+
+\begin{requirement}[ACA-120-008]
+\state{NOT-APPLICABLE} SHALL be permitted only when the governing profile
+contains an explicit applicability rule that can be independently evaluated.
+It SHALL NOT be used as a substitute for missing evidence or unresolved scope.
+\end{requirement}
+
+\begin{requirement}[ACA-120-009]
+Profiles SHALL identify which predicates are objective, evidentiary,
+discretionary, or non-computable. Human judgment SHALL NOT be concealed as
+deterministic computation.
+\end{requirement}
+
+\section{Authority and jurisdiction binding}
+The authority object and jurisdiction predicate establish who may decide what,
+for whom, where, during what period, and subject to which delegation,
+prohibition, and review structure.
+
+\begin{requirement}[ACA-120-010]
+An authority reference SHALL identify the claimed source, issuer, delegate,
+scope, affected subject or resource class, jurisdiction, effective period,
+version, and revocation status.
+\end{requirement}
+
+\begin{requirement}[ACA-120-011]
+A delegation SHALL NOT convey broader scope, longer duration, greater remedy
+immunity, or higher precedence than the delegating authority possesses.
+\end{requirement}
+
+\begin{requirement}[ACA-120-012]
+The subject, resource, transaction, or decision target evaluated by the cell
+SHALL be explicitly bound to the authority and jurisdiction inputs. Name,
+identifier, role, or record similarity alone SHALL NOT establish that binding.
+\end{requirement}
+
+\begin{requirement}[ACA-120-013]
+Where authority or jurisdiction depends on a disputed fact, the dependency
+SHALL be represented as a material predicate and SHALL NOT be assumed by the
+evaluator.
+\end{requirement}
+
+\section{Rule and profile binding}
+A VAC evaluates a declared rule set rather than an unversioned narrative.
+
+\begin{requirement}[ACA-120-014]
+Every evaluation SHALL bind to an immutable rule version and profile version.
+A later rule change SHALL NOT retroactively alter the recorded result of an
+earlier evaluation; it SHALL create a new evaluation or review event.
+\end{requirement}
+
+\begin{requirement}[ACA-120-015]
+The profile SHALL declare predicate dependencies, mandatory predicates,
+precedence rules, state-resolution rules, permitted overrides, and remedy
+obligations in a form suitable for conformance testing.
+\end{requirement}
+
+\begin{requirement}[ACA-120-016]
+Free-form prose MAY accompany a rule or predicate, but prose alone SHALL NOT be
+treated as executable semantics when a conformance claim depends on that
+semantics.
+\end{requirement}
+
+\section{Evidence sufficiency and provenance}
+Evidence sufficiency is profile-relative and SHALL remain distinct from evidence
+integrity and factual truth.
+
+\begin{requirement}[ACA-120-017]
+Each material evidence reference SHALL identify provenance, acquisition time,
+source identity or source class, integrity metadata, access restrictions,
+status, and the assertion it is offered to support or contradict.
+\end{requirement}
+
+\begin{requirement}[ACA-120-018]
+A hash, signature, timestamp, or chain-of-custody record MAY support integrity
+or attribution, but SHALL NOT by itself be treated as proof that the underlying
+assertion is true, complete, lawful, or applicable.
+\end{requirement}
+
+\begin{requirement}[ACA-120-019]
+The evaluator SHALL record material evidence that supports, contradicts, limits,
+or remains unavailable for a predicate. Selective omission of known material
+contradictory evidence is non-conforming.
+\end{requirement}
+
+\begin{requirement}[ACA-120-020]
+Where lawful access restrictions prevent disclosure, the Decision Proof Record
+SHALL preserve the existence, class, custodian, access rule, and effect of the
+restricted evidence without exposing protected content.
+\end{requirement}
+
+\section{Procedure, notice, and review}
+Procedure and notice are independently testable authorization conditions, not
+post-decision annotations.
+
+\begin{requirement}[ACA-120-021]
+A required procedural step SHALL identify its responsible actor, triggering
+condition, permitted sequence, completion evidence, deadline, and consequence
+of non-completion.
+\end{requirement}
+
+\begin{requirement}[ACA-120-022]
+Where notice or review is required before authorization or execution, absent,
+untimely, defective, or unverified notice SHALL prevent \state{ALLOW} unless a
+published profile defines a lawful emergency path and its additional safeguards.
+\end{requirement}
+
+\begin{requirement}[ACA-120-023]
+An emergency path SHALL be explicit, time-bounded, independently reviewable, and
+incapable of silently becoming the ordinary path.
+\end{requirement}
+
+\section{Temporal validity}
+Time SHALL be evaluated as part of authority, rule, evidence, procedure, and
+remedy validity.
+
+\begin{requirement}[ACA-120-024]
+The evaluator SHALL record the evaluation time, applicable effective intervals,
+expiration conditions, and the clock or trusted time source used where time is
+material.
+\end{requirement}
+
+\begin{requirement}[ACA-120-025]
+Expired authority, expired evidence where freshness is mandatory, or an expired
+procedural window SHALL prevent \state{ALLOW} unless the governing profile
+contains an explicit and testable exception.
+\end{requirement}
+
+\section{Conflict, prohibition, and revocation precedence}
+For profiles that permit Boolean authorization, the baseline allow expression
+is:
 \[
 \state{ALLOW}=A\land J\land R\land E\land P\land T\land N\land \neg C\land \neg V.
 \]
+This expression is a minimum authorization condition, not a complete execution
+instruction.
 
-\section{Required behavior}
-\begin{requirement}[ACA-120-001]
-A mandatory predicate with value \state{UNKNOWN} SHALL prevent \state{ALLOW}.
+\begin{requirement}[ACA-120-026]
+A valid revocation or prohibition SHALL take precedence over ordinary
+authorization.
 \end{requirement}
-\begin{requirement}[ACA-120-002]
-A mandatory predicate with value \state{CONFLICTED} SHALL produce \state{CONFLICT} unless a profile defines a higher-priority safe state.
+
+\begin{requirement}[ACA-120-027]
+A conflict SHALL identify the conflicting assertions, authorities, rules, or
+evidence objects and the precedence rule, review route, or missing fact required
+to resolve it.
 \end{requirement}
-\begin{requirement}[ACA-120-003]
-A valid revocation or prohibition SHALL take precedence over ordinary authorization.
+
+\begin{requirement}[ACA-120-028]
+An implementation SHALL NOT resolve a conflict by discarding the lower-ranked
+or inconvenient input from the proof record.
 \end{requirement}
-\begin{requirement}[ACA-120-004]
-Profiles SHALL identify which predicates are objective, evidentiary, discretionary, or non-computable. Human judgment SHALL NOT be concealed as deterministic computation.
+
+\section{Decision states and resolution}
+A VAC SHALL emit one canonical state defined by ACA-130:
+\[
+S\in\{\state{ALLOW},\state{DENY},\state{HOLD},\state{CONFLICT},
+\state{REVOKED},\state{ESCALATE}\}.
+\]
+
+\begin{requirement}[ACA-120-029]
+\state{ALLOW} SHALL require every mandatory positive authorization predicate to
+be satisfied and every mandatory conflict, revocation, or prohibition predicate
+to be cleared.
 \end{requirement}
+
+\begin{requirement}[ACA-120-030]
+\state{DENY} SHALL identify at least one evaluated rule condition that affirmatively
+requires denial. Missing information alone SHALL ordinarily produce
+\state{HOLD} or \state{ESCALATE}, not \state{DENY}.
+\end{requirement}
+
+\begin{requirement}[ACA-120-031]
+\state{HOLD} SHALL identify the unresolved predicate, required evidence or
+procedure, responsible route, and applicable deadline.
+\end{requirement}
+
+\begin{requirement}[ACA-120-032]
+\state{ESCALATE} SHALL identify why the cell cannot safely or lawfully resolve
+the evaluation and the qualified human or higher-order authority authorized to
+review it.
+\end{requirement}
+
+\begin{requirement}[ACA-120-033]
+Every emitted state SHALL include a stable reason code and a human-readable
+explanation that is consistent with the recorded predicates and precedence
+rules.
+\end{requirement}
+
+\section{Authorization and execution separation}
+An authorization decision and the execution of an action are distinct events.
+
+\begin{requirement}[ACA-120-034]
+A VAC SHALL NOT represent an authorized decision as executed unless a separate
+execution record identifies the action, executor, time, target, authorization
+reference, result, and integrity mechanism.
+\end{requirement}
+
+\begin{requirement}[ACA-120-035]
+Before execution, the executing component SHALL verify that the authorization
+remains current, unrevoked, applicable to the target, and within any declared
+execution window.
+\end{requirement}
+
+\begin{requirement}[ACA-120-036]
+A failed, partial, delayed, duplicated, or reversed execution SHALL be recorded
+without rewriting the original authorization decision.
+\end{requirement}
+
+\section{Decision Proof Record}
+Every evaluation SHALL emit or reference a Decision Proof Record conforming to
+ACA-140.
+
+\begin{requirement}[ACA-120-037]
+The proof record SHALL contain the cell and evaluation identifiers, profile and
+rule versions, evaluator identity, material inputs, predicate results, emitted
+state, reason code, conflicts and unknowns, authority and evidence references,
+remedy route, and integrity metadata.
+\end{requirement}
+
+\begin{requirement}[ACA-120-038]
+The proof record SHALL preserve sufficient normalized input and configuration
+metadata to permit deterministic replay when the evaluator has lawful access to
+the same versions and evidence objects.
+\end{requirement}
+
+\begin{requirement}[ACA-120-039]
+The record SHALL distinguish an integrity proof, an attribution proof, an
+authority evaluation, and a factual truth claim. None SHALL be silently
+substituted for another.
+\end{requirement}
+
+\section{Replay and determinism}
+
+\begin{requirement}[ACA-120-040]
+A conforming implementation SHALL declare its canonicalization rules for object
+ordering, numeric representation, text normalization, time representation,
+identifier comparison, omitted values, and cryptographic digest construction.
+\end{requirement}
+
+\begin{requirement}[ACA-120-041]
+Given the same normalized inputs, rule version, profile version, evaluator
+version, and permitted deterministic dependencies, replay SHALL produce the
+same predicate values, state, and reason code.
+\end{requirement}
+
+\begin{requirement}[ACA-120-042]
+Non-deterministic services, probabilistic models, or mutable external data MAY
+inform a predicate only when their identity, version, input, output, uncertainty,
+and review rule are recorded. Their output SHALL NOT be mislabeled as
+deterministic replay evidence.
+\end{requirement}
+
+\section{Remedy attachment}
+A terminal or adverse state does not complete the ACA lifecycle unless the
+applicable remedy is defined.
+
+\begin{requirement}[ACA-120-043]
+Every \state{DENY}, \state{HOLD}, \state{CONFLICT}, \state{REVOKED}, or
+\state{ESCALATE} state SHALL identify an available remedy or shall explicitly
+record that no remedy is provided, by what authority, and subject to what review.
+\end{requirement}
+
+\begin{requirement}[ACA-120-044]
+A remedy reference SHALL identify the responsible authority, permitted filer or
+initiator, required inputs, deadline, review sequence, correction mechanism,
+propagation obligations, verification condition, and closure rule.
+\end{requirement}
+
+\begin{requirement}[ACA-120-045]
+A later correction SHALL preserve the original evaluation and create a linked
+correction, propagation, and verification history conforming to ACA-150.
+\end{requirement}
+
+\section{Security and abuse resistance}
+
+\begin{requirement}[ACA-120-046]
+Implementations SHALL enforce least privilege for evaluation, review, override,
+execution, evidence access, and remedy closure. Possession of write access to
+one function SHALL NOT imply authority to perform the others.
+\end{requirement}
+
+\begin{requirement}[ACA-120-047]
+Overrides SHALL identify the authorized actor, legal or policy basis, scope,
+reason, time, affected predicates, resulting state, expiration, and required
+independent review. Undocumented override behavior is non-conforming.
+\end{requirement}
+
+\begin{requirement}[ACA-120-048]
+The implementation SHALL detect or prevent replay substitution, stale authority,
+identifier collision, unauthorized profile changes, evidence-reference
+replacement, and suppression of material conflicts to the extent required by
+the deployment threat model.
+\end{requirement}
+
+\begin{requirement}[ACA-120-049]
+Sensitive evidence and personal data SHALL be minimized and access-controlled,
+but minimization SHALL NOT erase the proof that a material input existed or
+alter its recorded effect on the decision.
+\end{requirement}
+
+\section{Conformance evidence and traceability}
+
+\begin{requirement}[ACA-120-050]
+Each normative requirement claimed by an implementation SHALL map to at least
+one specification reference, implementation control, positive test, negative or
+adversarial test where applicable, and retained test result.
+\end{requirement}
+
+\begin{requirement}[ACA-120-051]
+A schema-valid object SHALL NOT be labeled substantively conforming unless its
+cross-object bindings, predicate semantics, state resolution, proof record,
+replay behavior, and remedy obligations also pass the applicable conformance
+suite.
+\end{requirement}
+
+\begin{requirement}[ACA-120-052]
+A conformance report SHALL identify every requirement tested, passed, failed,
+not applicable, or not tested. Partial conformance SHALL be labeled as partial
+and SHALL NOT be presented as full ACA-120 conformance.
+\end{requirement}
+
+\section{Versioning and extension rules}
+
+\begin{requirement}[ACA-120-053]
+Every extension predicate, state restriction, evidence class, or precedence rule
+SHALL use a collision-resistant identifier and SHALL declare its relationship to
+the baseline contract.
+\end{requirement}
+
+\begin{requirement}[ACA-120-054]
+A breaking semantic change SHALL require a new contract or profile version and
+SHALL NOT be introduced solely by changing prose, examples, evaluator code, or
+an external service.
+\end{requirement}
+
+\begin{requirement}[ACA-120-055]
+Deprecated fields or rules SHALL remain interpretable for the declared retention
+period, and migrations SHALL preserve the original version, meaning, proof
+record, and remedy history.
+\end{requirement}
+
+\section{Minimum acceptance criteria}
+An ACA-120 candidate is eligible for approval only when:
+\begin{enumerate}
+\item the normative text is versioned and reviewable;
+\item the Authority Cell schema expresses the required structural contract;
+\item positive, negative, conflict, revocation, expiration, unknown, override,
+and replay examples exist;
+\item a requirement-to-schema-to-test traceability matrix exists;
+\item the conformance suite verifies state resolution and fail-safe behavior;
+\item authorization and execution are represented separately;
+\item proof-record and remedy obligations are tested; and
+\item all known deviations are documented as explicit, time-bounded exceptions.
+\end{enumerate}
+
+This chapter defines the normative Authority Cell contract. ACA-130 defines the
+state-machine transitions, ACA-140 defines the portable Decision Proof Record,
+and ACA-150 defines the remedy lifecycle that follows an unresolved, adverse,
+revoked, or corrected decision.
