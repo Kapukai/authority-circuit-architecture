@@ -1,0 +1,31 @@
+{
+  "id": "KES-WO-0001",
+  "title": "Freeze KES Capability Operating System",
+  "type": "documentation",
+  "risk": "low",
+  "purpose": "Freeze the minimal work-order-driven operating model for Kapukai.",
+  "tags": [],
+  "sensitive_data": false,
+  "external_deployment": false,
+  "public_release": false,
+  "acceptance_criteria": [
+    "Constitution installed",
+    "Capability planner passes verification"
+  ],
+  "deliverables": [
+    "KES Constitution",
+    "Capability Registry",
+    "Planner",
+    "Tests"
+  ],
+  "verification": [
+    "Run kes/scripts/verify.sh"
+  ],
+  "release": {
+    "human_approval": true,
+    "rollback": "Revert commit"
+  },
+  "learning": [
+    "Record installation and verification results"
+  ]
+}

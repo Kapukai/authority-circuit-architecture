@@ -1,0 +1,43 @@
+{
+  "id": "EDS-WO-0001",
+  "title": "Verified Decision MVP",
+  "type": "product",
+  "risk": "high",
+  "purpose": "Deliver one end-to-end workflow that creates and replays a Decision Proof Record.",
+  "tags": [
+    "regulated",
+    "authentication"
+  ],
+  "sensitive_data": true,
+  "external_deployment": true,
+  "public_release": true,
+  "acceptance_criteria": [
+    "Create decision",
+    "Add evidence metadata",
+    "Generate DPR",
+    "Replay succeeds",
+    "Export JSON"
+  ],
+  "deliverables": [
+    "Browser application",
+    "API",
+    "KAPU adapter",
+    "Tests",
+    "Deployment package"
+  ],
+  "verification": [
+    "Unit tests",
+    "Integration tests",
+    "Security review",
+    "Clean-room deployment"
+  ],
+  "release": {
+    "human_approval": true,
+    "rollback": "Redeploy previous immutable release"
+  },
+  "learning": [
+    "Capture user completion time",
+    "Capture replay failures",
+    "Capture corrections"
+  ]
+}

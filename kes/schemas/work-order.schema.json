@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/kes-work-order-v1.schema.json",
+  "title": "KES Work Order v1",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "type",
+    "risk",
+    "purpose",
+    "acceptance_criteria",
+    "deliverables",
+    "verification",
+    "release"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]+(?:-[A-Z]+)?-WO-[0-9]{4}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "type": {
+      "enum": [
+        "documentation",
+        "code",
+        "product",
+        "research",
+        "standard",
+        "pilot",
+        "release",
+        "integration"
+      ]
+    },
+    "risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "life-critical"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 10
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "sensitive_data": {
+      "type": "boolean",
+      "default": false
+    },
+    "external_deployment": {
+      "type": "boolean",
+      "default": false
+    },
+    "public_release": {
+      "type": "boolean",
+      "default": false
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "verification": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "human_approval"
+      ],
+      "properties": {
+        "human_approval": {
+          "type": "boolean"
+        },
+        "rollback": {
+          "type": "string"
+        }
+      }
+    },
+    "learning": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

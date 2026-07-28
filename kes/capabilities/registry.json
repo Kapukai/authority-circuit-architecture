@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "capabilities": {
+    "architecture": {
+      "required_for": [
+        "all"
+      ],
+      "independent": false
+    },
+    "engineering": {
+      "required_for": [
+        "code",
+        "product",
+        "integration"
+      ],
+      "independent": false
+    },
+    "verification": {
+      "required_for": [
+        "all"
+      ],
+      "independent": true
+    },
+    "release": {
+      "required_for": [
+        "release",
+        "product",
+        "code"
+      ],
+      "independent": true
+    },
+    "research": {
+      "required_for": [
+        "research",
+        "standard",
+        "regulated"
+      ],
+      "independent": false
+    },
+    "product": {
+      "required_for": [
+        "product",
+        "user-facing"
+      ],
+      "independent": false
+    },
+    "publisher": {
+      "required_for": [
+        "public-release",
+        "campaign"
+      ],
+      "independent": false
+    },
+    "security": {
+      "required_for": [
+        "sensitive-data",
+        "regulated",
+        "authentication",
+        "external-deployment"
+      ],
+      "independent": true
+    },
+    "liaison": {
+      "required_for": [
+        "pilot",
+        "partnership",
+        "event",
+        "standards-engagement"
+      ],
+      "independent": false
+    }
+  }
+}
