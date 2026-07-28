@@ -14,19 +14,4 @@ release/
 .venv/
 __pycache__/
 *.py[cod]
-.pytest_cache/<< HEAD
-docs/build/*
-!docs/build/.gitkeep
-dist/
-release/
-*.zip
-*.tar.gz
-.DS_Store
-._*
-=======
-# Python
-.venv/
-__pycache__/
-*.py[cod]
 .pytest_cache/
->>>>>>> 35f4215 (Add ACA v0.1 canonical schema contract)
