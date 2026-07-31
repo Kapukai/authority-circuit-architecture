@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/kes/work-package/0.1",
+  "title": "KES Governed Work Package",
+  "type": "object",
+  "required": ["schema_version", "work_package_id", "target", "authorized_by", "state", "scope", "verification_commands", "human_acceptance_required"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "work_package_id": {"type": "string", "pattern": "^WP-[A-Z0-9][A-Z0-9._-]*$"},
+    "target": {"type": "string", "minLength": 1},
+    "authorized_by": {"const": "Human Chief Architect"},
+    "state": {"enum": ["AUTHORIZED", "IN_PROGRESS", "VERIFIED", "ACCEPTED", "BLOCKED", "WITHDRAWN"]},
+    "scope": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "verification_commands": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "human_acceptance_required": {"const": true}
+  },
+  "additionalProperties": false
+}
