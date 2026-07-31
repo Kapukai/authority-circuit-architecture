@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/kes-release-v0.1.json",
+  "title": "KES Release Manifest",
+  "type": "object",
+  "required": [
+    "work_order",
+    "product",
+    "version",
+    "status",
+    "source_dir",
+    "required_files"
+  ],
+  "properties": {
+    "work_order": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[0-9]{4}$"
+    },
+    "product": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "working-draft",
+        "release-candidate",
+        "released"
+      ]
+    },
+    "source_dir": {
+      "type": "string"
+    },
+    "required_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification_commands": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    },
+    "public_url": {
+      "type": "string"
+    },
+    "repository_url": {
+      "type": "string"
+    },
+    "release_authority": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

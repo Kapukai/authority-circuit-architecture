@@ -1,0 +1,28 @@
+{
+  "work_order": "EDS-0003",
+  "product": "Decision Replay Explorer",
+  "slug": "decision-replay-explorer",
+  "version": "0.1.0",
+  "status": "release-candidate",
+  "source_dir": "../../../products/decision-replay-explorer",
+  "required_files": [
+    "README.md",
+    "RELEASE_NOTES.md",
+    "index.html",
+    "scripts/verify.py"
+  ],
+  "verification_commands": [
+    [
+      "python3",
+      "scripts/verify.py"
+    ],
+    [
+      "node",
+      "tests/replay.test.mjs"
+    ]
+  ],
+  "summary": "A local, dependency-free explorer that makes DPR replay equivalence and divergence observable.",
+  "public_url": "",
+  "repository_url": "https://github.com/Kapukai/authority-circuit-architecture",
+  "release_authority": null
+}
