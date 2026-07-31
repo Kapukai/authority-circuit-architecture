@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KES-0004 Mission Control</title>
+<style>
+:root{font-family:Inter,system-ui,sans-serif;color:#e8edf5;background:#09111f}body{margin:0;padding:24px;max-width:1500px;margin:auto}h1{margin:0 0 6px}.muted{color:#9fb0c8}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0}.card{background:#111d30;border:1px solid #263653;border-radius:12px;padding:16px}.badge{display:inline-block;border:1px solid #49617f;border-radius:999px;padding:3px 9px;font-size:12px;margin:2px}.PASS,.ACCEPTED,.RELEASED,.AUTHORIZED,.PUBLISHED{border-color:#47a477}.FAIL,.BLOCKED,.CRITICAL{border-color:#dd6b6b}.INDETERMINATE,.PROPOSED,.NOT_RUN{border-color:#c6a45c}table{width:100%;border-collapse:collapse;background:#111d30;border-radius:12px;overflow:hidden}th,td{text-align:left;padding:10px;border-bottom:1px solid #263653;vertical-align:top}th{color:#9fb0c8}section{margin:24px 0}.path{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.node{background:#162640;border:1px solid #365173;border-radius:8px;padding:8px}.arrow{color:#6f86a6}input{margin:12px 0;color:#e8edf5}code{color:#b9d5ff}.warning{background:#2c2415;border:1px solid #8e7130;padding:12px;border-radius:10px}
+</style>
+</head>
+<body>
+<h1>KES-0004 Mission Control</h1>
+<div class="muted">Read-only program control plane. Display does not authorize, merge, publish, deploy, or establish truth.</div>
+<input id="file" type="file" accept="application/json">
+<div id="status" class="warning">Loading canonical example…</div>
+<div id="app"></div>
+<script>
+const app=document.getElementById('app'),status=document.getElementById('status');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const badge=s=>`<span class="badge ${esc(s)}">${esc(s)}</span>`;
+function findings(d){const ids=new Set(d.items.map(x=>x.id));const f=[];for(const x of d.items){if(!x.owner)f.push(`${x.id}: missing owner`);if(x.state==='INDETERMINATE')f.push(`${x.id}: indeterminate state`);if(x.blocking_reason)f.push(`${x.id}: ${x.blocking_reason}`)}for(const e of d.dependencies){if(!ids.has(e.from)||!ids.has(e.to))f.push(`Broken dependency: ${e.from} → ${e.to}`)}return f}
+function nextEligible(d){return d.items.find(x=>x.id==='AIM-0000')||d.items.find(x=>x.state==='PROPOSED')}
+function render(d){const fs=findings(d),next=nextEligible(d);status.textContent=`Loaded schema ${d.schema_version}; generated ${d.generated_at}. ${fs.length} finding(s).`;status.className=fs.length?'warning':'card';
+app.innerHTML=`<div class="grid"><div class="card"><b>Program</b><h2>${esc(d.program.name)}</h2>${badge(d.program.status)}<p>${esc(d.program.statement||'')}</p></div><div class="card"><b>Current authorized work</b><h2>${esc(d.next_authorized_work.id)}</h2>${badge(d.next_authorized_work.authorization_state)}<p>${esc(d.next_authorized_work.reason||'')}</p></div><div class="card"><b>Next eligible work</b><h2>${esc(next?.id||'—')}</h2>${next?badge(next.state):''}<p>${esc(next?.blocking_reason||'No next eligible work identified.')}</p></div><div class="card"><b>Portfolio</b><h2>${d.items.length} tracked items</h2><p>${d.risks.length} risks · ${d.dependencies.length} dependencies · ${fs.length} findings</p></div></div>
+<section><h2>Critical path</h2><div class="path">${(d.critical_path||[]).map((x,i)=>`${i?'<span class="arrow">→</span>':''}<span class="node">${esc(x)}</span>`).join('')}</div></section>
+<section><h2>Program items</h2><table><thead><tr><th>ID</th><th>Family</th><th>State</th><th>Verification</th><th>Publication</th><th>Branch / PR</th><th>Blocking reason</th></tr></thead><tbody>${d.items.map(x=>`<tr><td><b>${esc(x.id)}</b><br><span class="muted">${esc(x.name)}</span></td><td>${esc(x.family)}</td><td>${badge(x.state)}</td><td>${badge(x.verification_state)}</td><td>${badge(x.publication_state)}</td><td><code>${esc(x.branch||'—')}</code>${x.pull_request?`<br>PR #${x.pull_request}`:''}</td><td>${esc(x.blocking_reason||'—')}</td></tr>`).join('')}</tbody></table></section>
+<section><h2>Risks</h2><div class="grid">${d.risks.map(r=>`<div class="card"><b>${esc(r.id)} — ${esc(r.title)}</b><p>${badge(r.severity)} ${badge(r.state)}</p><p>${esc(r.containment)}</p><div class="muted">Owner: ${esc(r.owner)}</div></div>`).join('')}</div></section>
+<section><h2>Findings</h2>${fs.length?`<div class="card"><ul>${fs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:'<div class="card">No deterministic findings.</div>'}</section>`}
+async function loadDefault(){try{const r=await fetch('../examples/program-state.json');if(!r.ok)throw new Error(r.status);render(await r.json())}catch(e){status.textContent='Default state could not be fetched. Serve this directory with a local HTTP server or select program-state.json above.'}}
+document.getElementById('file').addEventListener('change',async e=>{try{render(JSON.parse(await e.target.files[0].text()))}catch(err){status.textContent='Invalid JSON: '+err.message}});loadDefault();
+</script>
+</body>
+</html>
