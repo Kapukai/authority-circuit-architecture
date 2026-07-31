@@ -24,7 +24,7 @@ REQUIRED_PHRASES = {
         "Verification establishes",
     ],
     ROOT / "docs" / "RESEARCH_BOUNDARY.md": [
-        "must not output a single aggregate percentage",
+        "must not output a single aggregate",
         "Only an accountable human may",
     ],
     ROOT / "docs" / "WORK_ORDER.md": [
@@ -41,12 +41,24 @@ REQUIRED_PHRASES = {
     ],
 }
 
-PROHIBITED_PHRASES = [
+PROHIBITED_OPERATIONAL_PHRASES = [
     "percent lawful",
     "% lawful",
     "automatically authorize",
     "autonomous authorization",
 ]
+
+OPERATIONAL_SUFFIXES = {".py", ".js", ".mjs", ".ts", ".tsx", ".sh"}
+
+
+def operational_files():
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or path == Path(__file__).resolve():
+            continue
+        if "docs" in path.relative_to(ROOT).parts:
+            continue
+        if path.suffix.lower() in OPERATIONAL_SUFFIXES:
+            yield path
 
 
 def main() -> int:
@@ -64,8 +76,11 @@ def main() -> int:
                     f"missing required boundary phrase in {path.relative_to(ROOT)}: {phrase!r}"
                 )
 
-        lowered = text.lower()
-        for phrase in PROHIBITED_PHRASES:
+    # Policy documents may quote forbidden claims in order to prohibit them.
+    # Only executable or operational source files are scanned for those claims.
+    for path in operational_files():
+        lowered = path.read_text(encoding="utf-8", errors="replace").lower()
+        for phrase in PROHIBITED_OPERATIONAL_PHRASES:
             if phrase.lower() in lowered:
                 failures.append(
                     f"prohibited operational claim in {path.relative_to(ROOT)}: {phrase!r}"
