@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1",
+  "generated_at": "2026-07-31T02:10:00-04:00",
+  "program": {
+    "name": "Kapukai Program Architecture",
+    "status": "IN_PROGRESS",
+    "canonical_branch": "main",
+    "statement": "KES governs the program; AIM discovers mechanics; ACA standardizes validated mechanics; KAPU evaluates; EDS makes decisions observable; humans retain authority."
+  },
+  "items": [
+    {"id":"ACA-000-150","name":"Authority Circuit Standards Foundation","family":"ACA","state":"RELEASED","owner":"Human Chief Architect","branch":"main","pull_request":null,"verification_state":"PASS","publication_state":"PUBLISHED","description":"Current Working Draft 0.1 standards family.","blocking_reason":null,"updated_at":"2026-07-25T02:42:10Z"},
+    {"id":"KAPU","name":"KAPU Evaluation Engine","family":"KAPU","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"main","pull_request":null,"verification_state":"INDETERMINATE","publication_state":"NOT_PUBLISHED","description":"Formal evaluation capability.","blocking_reason":null,"updated_at":"2026-07-31T02:10:00-04:00"},
+    {"id":"EDS-0003","name":"Decision Replay Explorer","family":"EDS","state":"ACCEPTED","owner":"Human Chief Architect","branch":"product/eds-0003-replay-explorer","pull_request":4,"verification_state":"PASS","publication_state":"CANDIDATE","description":"Compares supplied Decision Proof Records and exposes divergence.","blocking_reason":null,"updated_at":"2026-07-31T00:22:20Z"},
+    {"id":"KES-0002","name":"Release Pipeline","family":"KES","state":"INDETERMINATE","owner":"Human Chief Architect","branch":"kes/kes-0002-release-pipeline","pull_request":null,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Prepares verified release candidates without publishing them.","blocking_reason":"Branch disposition not yet recorded.","updated_at":"2026-07-31T02:10:00-04:00"},
+    {"id":"KES-0003","name":"Repository Intelligence","family":"KES","state":"INDETERMINATE","owner":"Human Chief Architect","branch":"kes/kes-0003-repository-intelligence","pull_request":null,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Read-only repository observability capability.","blocking_reason":"Branch disposition not yet recorded.","updated_at":"2026-07-31T02:10:00-04:00"},
+    {"id":"KES-0004","name":"Mission Control","family":"KES","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"kes/kes-0004-mission-control","pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Program control plane for portfolio state, critical path, dependencies, risk, and next authorized work.","blocking_reason":null,"updated_at":"2026-07-31T02:10:00-04:00"},
+    {"id":"AIM-0000","name":"Authority Integrity Mechanics Program Charter","family":"AIM","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Research charter and safety case for Authority Integrity Mechanics.","blocking_reason":"Requires KES-0004 candidate acceptance.","updated_at":"2026-07-31T02:10:00-04:00"},
+    {"id":"EDS-0004","name":"Human Authorization","family":"EDS","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Human authorization layer separated from verification.","blocking_reason":"Work order not yet authorized.","updated_at":"2026-07-31T02:10:00-04:00"}
+  ],
+  "dependencies": [
+    {"from":"KES-0003","to":"KES-0004","kind":"INFORMS"},
+    {"from":"KES-0004","to":"AIM-0000","kind":"REQUIRES"},
+    {"from":"ACA-000-150","to":"EDS-0004","kind":"INFORMS"},
+    {"from":"EDS-0003","to":"EDS-0004","kind":"INFORMS"}
+  ],
+  "risks": [
+    {"id":"RISK-001","title":"Ambiguous branch disposition","severity":"HIGH","state":"OPEN","owner":"Human Chief Architect","containment":"Audit KES-0002, KES-0003, schema-contract, and ACA-001 branches before additional integration."},
+    {"id":"RISK-002","title":"Verification confused with authorization","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"Maintain separate fields and gates for verification, acceptance, authorization, publication, and release."},
+    {"id":"RISK-003","title":"Research claims promoted prematurely","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"Keep AIM non-normative until reproducibility, adversarial review, expert review, and pilot gates are satisfied."}
+  ],
+  "critical_path": ["KES-RR-0001","KES-0004","AIM-0000","EDS-0004","AIM-0001","EDS-0005","AIM-0002","AIM-0003","ACA-200","PILOT-0001"],
+  "next_authorized_work": {
+    "id": "KES-0004",
+    "authorized_by": "Human Chief Architect",
+    "authorization_state": "AUTHORIZED",
+    "reason": "Mission Control is required to govern the expanding product, standards, research, branch, release, and risk portfolio."
+  }
+}
