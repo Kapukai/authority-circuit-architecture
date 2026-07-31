@@ -14,12 +14,16 @@
     {"id":"KES-0002","name":"Release Pipeline","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":5,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged into main through the canonical KES-0003 integration candidate.","blocking_reason":null,"updated_at":"2026-07-31T07:56:00Z"},
     {"id":"KES-0003","name":"Repository Intelligence","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":5,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged into main with KES-0002 through PR #5.","blocking_reason":null,"updated_at":"2026-07-31T07:56:00Z"},
     {"id":"KES-0004","name":"Mission Control","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":6,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Read-only program control plane merged into main through PR #6.","blocking_reason":null,"updated_at":"2026-07-31T08:01:00Z"},
+    {"id":"KES-0005","name":"Standards Registry and Work Orchestration","family":"KES","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"agent/aca-registry-orchestration","pull_request":null,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Deterministic ACA identifier registry, agent proposal boundary, and governed work-package contract.","blocking_reason":null,"updated_at":"2026-07-31T11:45:00Z"},
+    {"id":"ACA-121-127","name":"Authority Cell Projection Children","family":"ACA","state":"PROPOSED","owner":"Human Chief Architect","branch":"aca/aca-121-authority-cell-projections","pull_request":10,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Proposed ACA-120 child standards for canonical graph and projections; allocation remains proposed pending registry and human acceptance.","blocking_reason":"Requires KES-0005 acceptance before canonical allocation.","updated_at":"2026-07-31T10:56:21Z"},
     {"id":"AIM-0000","name":"Authority Integrity Mechanics Program Charter","family":"AIM","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"aim/aim-0000-research-charter","pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Research charter, construct register, promotion gates, and safety boundary for Authority Integrity Mechanics.","blocking_reason":null,"updated_at":"2026-07-31T04:10:00-04:00"},
     {"id":"AIM-0001","name":"Authority Integrity Mechanics Measurement Primitives","family":"AIM","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Operational definitions, units, observation rules, and falsification tests for candidate mechanics.","blocking_reason":"Eligible only after AIM-0000 human acceptance.","updated_at":"2026-07-31T04:10:00-04:00"},
     {"id":"EDS-0004","name":"Human Authorization","family":"EDS","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Human authorization layer separated from verification.","blocking_reason":"Work order not yet authorized.","updated_at":"2026-07-31T03:22:00-04:00"}
   ],
   "dependencies": [
     {"from":"KES-0003","to":"KES-0004","kind":"INFORMS"},
+    {"from":"KES-0004","to":"KES-0005","kind":"REQUIRES"},
+    {"from":"KES-0005","to":"ACA-121-127","kind":"REQUIRES"},
     {"from":"KES-0004","to":"AIM-0000","kind":"REQUIRES"},
     {"from":"AIM-0000","to":"AIM-0001","kind":"REQUIRES"},
     {"from":"ACA-000-150","to":"EDS-0004","kind":"INFORMS"},
@@ -28,13 +32,14 @@
   "risks": [
     {"id":"RISK-001","title":"Ambiguous branch disposition","severity":"HIGH","state":"CONTAINED","owner":"Human Chief Architect","containment":"KES-0002, KES-0003, and KES-0004 are merged into protected main through PRs #5 and #6; future work uses explicit feature branches and pull requests."},
     {"id":"RISK-002","title":"Verification confused with authorization","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"Maintain separate fields and gates for verification, acceptance, authorization, publication, and release."},
-    {"id":"RISK-003","title":"Research claims promoted prematurely","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"AIM-0000 defines AIM as non-normative and requires reproducibility, adversarial review, expert review, misuse review, and a separate ACA standardization decision."}
+    {"id":"RISK-003","title":"Research claims promoted prematurely","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"AIM-0000 defines AIM as non-normative and requires reproducibility, adversarial review, expert review, misuse review, and a separate ACA standardization decision."},
+    {"id":"RISK-004","title":"Agent-generated ACA identifier collision","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"KES-0005 makes the registry authoritative, prohibits agent allocation, validates decade parentage, and requires human acceptance."}
   ],
-  "critical_path": ["KES-RR-0001","KES-0004","AIM-0000","EDS-0004","AIM-0001","EDS-0005","AIM-0002","AIM-0003","ACA-200","PILOT-0001"],
+  "critical_path": ["KES-RR-0001","KES-0004","KES-0005","ACA-121-127","AIM-0000","EDS-0004","AIM-0001","EDS-0005","AIM-0002","AIM-0003","ACA-200","PILOT-0001"],
   "next_authorized_work": {
-    "id": "AIM-0000",
+    "id": "KES-0005",
     "authorized_by": "Human Chief Architect",
     "authorization_state": "AUTHORIZED",
-    "reason": "KES-0004 has been accepted and merged. AIM-0000 is the current authorized research work; AIM-0001 remains blocked pending charter acceptance."
+    "reason": "The Human Chief Architect authorized the registry and agent-boundary control required before ACA-121–127 can become canonical."
   }
 }

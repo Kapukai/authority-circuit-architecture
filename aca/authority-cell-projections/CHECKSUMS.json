@@ -1,0 +1,19 @@
+{
+  "PROJECTION_ARCHITECTURE.md": "a11a22c2157a6ae8365f8ba7304b419f4825d7ba9268a5b27ac1cb54ea99ad1e",
+  "README.md": "ac90d540e0e5bbc10b9f0edd28afbf21b117699c6a75a2e5df4fa1feb8779538",
+  "WORK_ORDER.md": "227dd7a81cdb8becf696ef7021738d954db073a0b9e4f89bf8ffe771a90c11f8",
+  "docs/ACA-121.md": "f963757f77cb96b2ad1796363b9e75d1756128e13b7bcdbeef2a4d27e95888fa",
+  "docs/ACA-122.md": "3f171f7664dbe1c29b7c7d270fbd656aa01a49c9c6fee9624aa12ac3702b8535",
+  "docs/ACA-123.md": "e45abf91c0c08a2871df9a23d11b101033f01ae9054443dc65b50184d1a1a6b8",
+  "docs/ACA-124.md": "ab61eed87e98c220a48312e462f93e83a3698a7b112fed81bf63cf2ceceeced8",
+  "docs/ACA-125.md": "f4afb53a10498591a1f3ef24ad7054503cb1a6179ecf613412460ae66f57ca03",
+  "docs/ACA-126.md": "e83396ba87a11c7bd060f4d3040139edaf48e89a3ef48cb466a90a39b2e0b9dc",
+  "docs/ACA-127.md": "9cc161427ad0b528b47525030e37228d33a849b2fba75f9f336004f46e78fb27",
+  "examples/authority-cell.generated.json": "f4a4365687be65d782940d56679a3d1675a1c7c1dbb43d98c0eeb2d633433b41",
+  "examples/authority-cell.json": "f0bb32f119099c3ad78e5a248788f0110a154e4ab6e517b8786b801676f792ec",
+  "projection.schema.json": "a2e7575a6a1800cd7b3881d7f8635c7b8563d28d6149346ccf2caf2880f841cd",
+  "scripts/generate_views.py": "a8f364f5c72a38769f6f55b1d3830cc095fe0f7c2eaaa270c85b9e4615134105",
+  "scripts/verify.py": "1dff75bc4b1e7732ab2773b948cbb98cf3bf252782d1c7f309071bde598bc999",
+  "tests/test_projection_schema.py": "34e7c7f57e489e8dbaf1980bad16a3c1644981c18e255904535a6d2f6a2ab10b",
+  "tests/test_roundtrip.py": "e9e01a4ce8d5e9096509f4118ff6b3744c13ac9f62fe1f95929c1171b1ad357d"
+}

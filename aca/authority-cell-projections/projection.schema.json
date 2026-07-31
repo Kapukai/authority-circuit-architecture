@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ACA Authority Cell Projection Package",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "cell",
+    "projections"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ACA-121-127-draft-0.1"
+    },
+    "cell": {
+      "type": "object",
+      "required": [
+        "cell_id",
+        "evaluation_id",
+        "nodes",
+        "edges",
+        "sources",
+        "audit_events"
+      ]
+    },
+    "projections": {
+      "type": "object",
+      "required": [
+        "derivation",
+        "citation",
+        "transition",
+        "challenge",
+        "timeline"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "ACA-121-127-draft-0.1",
+  "cell": {
+    "cell_id": "VAC-SYNTHETIC-001",
+    "evaluation_id": "EVAL-SYNTHETIC-001",
+    "nodes": [
+      {
+        "id": "N1",
+        "type": "sovereign_source",
+        "label": "The People",
+        "state": "SUPPORTED",
+        "source_refs": [
+          "S1"
+        ]
+      },
+      {
+        "id": "N2",
+        "type": "constitution",
+        "label": "Synthetic Constitution",
+        "state": "SUPPORTED",
+        "source_refs": [
+          "S1"
+        ]
+      },
+      {
+        "id": "N3",
+        "type": "statute",
+        "label": "Synthetic Statute",
+        "state": "INDETERMINATE",
+        "source_refs": []
+      }
+    ],
+    "edges": [
+      {
+        "id": "E1",
+        "from": "N1",
+        "to": "N2",
+        "claim": "Source establishes instrument",
+        "state": "SUPPORTED",
+        "source_refs": [
+          "S1"
+        ],
+        "counter_source_refs": []
+      },
+      {
+        "id": "E2",
+        "from": "N2",
+        "to": "N3",
+        "claim": "Instrument permits enactment",
+        "state": "INDETERMINATE",
+        "source_refs": [],
+        "counter_source_refs": []
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "title": "Synthetic Source",
+        "exact_quote": "Synthetic source text for schema testing only.",
+        "interpretation": "Interpretation stored separately.",
+        "locator": "\u00a7 1",
+        "retrieved_at": "2026-07-31T00:00:00Z",
+        "sha256": "98abb2d8c3f6dbafb2876099ce709d6990da26c7884fc9868e890bf7535825b0"
+      }
+    ],
+    "audit_events": [
+      {
+        "event_id": "A1",
+        "actor": "synthetic-reviewer",
+        "action": "created",
+        "timestamp": "2026-07-31T00:00:00Z"
+      }
+    ]
+  },
+  "projections": {}
+}
