@@ -1,0 +1,15 @@
+{
+  ".gitignore": "e8388b573d828cc4b2ba266bdc24e4c13200d33c89ef5a2e67a134984743758e",
+  "CHECKSUMS.json": "e41179d9fff0922743e74e890d4561a9af288a69e29ac947171414948592c638",
+  "README.md": "0b3e20d0113e11f0c4ad7a0d1293edb54f87c088d618b1ab01c0045f8fba2b08",
+  "RELEASE_NOTES.md": "c28ee27604001db2684ba8f066318cd04d4c4883009b021b44327f34948d0151",
+  "docs/ADR-0002.md": "1de47ba5c48ae1c55135518bfb0100f294de3fdfe8dde77ad9e2089a7b7e9d7f",
+  "docs/RELEASE_POLICY.md": "90dda7986d1f89934962d6f4269f39354b0d4db894cb8ccb61a73dd01b37ed8c",
+  "docs/THREAT_MODEL.md": "9c5eb6653d13f74288ced7cba43fcadbf71cfb62aade86ca0f78ac92e5913bec",
+  "docs/WORK_ORDER.md": "125a483eda6b4f152413ed186a1180d099d98c687cef4b0985b2646d4b0540c7",
+  "examples/eds-0003.release.json": "75e3f17974738ab923a9874fbbcbf9cac5194f97481b69f3b6a3009dee7db451",
+  "kes-release.schema.json": "ba46cd4465072e121308e5fd70152fd4f0abbc44035866674d96fda329ad107d",
+  "scripts/release.py": "2273cb068239a871ae2f11a205a7b49eae5aa2ce395a81ee10f8505ef1398a15",
+  "scripts/verify.py": "ca130a70d53093529fc05ed44f458327401b73350c24d1719be9acf7f483cca5",
+  "tests/test_release.py": "001420d37d65e2e673ece0584efa05b6fa7979b122529670f69e5df01e66fa07"
+}
