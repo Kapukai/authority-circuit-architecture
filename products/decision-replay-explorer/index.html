@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kapukai Decision Replay Explorer">
+  <title>Decision Replay Explorer</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">KAPUKAI · EDS-0003</p>
+      <h1>Decision Replay Explorer</h1>
+      <p class="subtitle">Make deterministic replay visible, inspectable, and independently understandable.</p>
+    </div>
+    <div class="status-wrap">
+      <span id="statusBadge" class="badge neutral">AWAITING RECORDS</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls" aria-labelledby="load-heading">
+      <div>
+        <h2 id="load-heading">Load records</h2>
+        <p>Choose an original DPR and a replayed DPR, or load the synthetic demonstration.</p>
+      </div>
+      <div class="control-grid">
+        <label>
+          <span>Original DPR</span>
+          <input id="originalFile" type="file" accept=".json,application/json">
+        </label>
+        <label>
+          <span>Replay DPR</span>
+          <input id="replayFile" type="file" accept=".json,application/json">
+        </label>
+        <button id="demoButton" type="button">Load demonstration</button>
+        <button id="exportButton" type="button" disabled>Export comparison</button>
+      </div>
+      <p id="errorMessage" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="summary-grid" aria-label="Replay summary">
+      <article class="metric">
+        <span class="metric-label">Original hash</span>
+        <code id="originalHash">—</code>
+      </article>
+      <article class="metric">
+        <span class="metric-label">Replay hash</span>
+        <code id="replayHash">—</code>
+      </article>
+      <article class="metric">
+        <span class="metric-label">Differences</span>
+        <strong id="differenceCount">—</strong>
+      </article>
+      <article class="metric">
+        <span class="metric-label">Equivalence</span>
+        <strong id="equivalence">—</strong>
+      </article>
+    </section>
+
+    <section class="panel" aria-labelledby="diff-heading">
+      <div class="panel-heading">
+        <div>
+          <h2 id="diff-heading">Observed differences</h2>
+          <p>Paths are compared recursively. Arrays preserve order because order may be decision-relevant.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Difference filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="changed">Changed</button>
+          <button class="filter" data-filter="added">Added</button>
+          <button class="filter" data-filter="removed">Removed</button>
+        </div>
+      </div>
+      <div id="emptyState" class="empty-state">Load two records to begin.</div>
+      <div class="table-wrap" id="tableWrap" hidden>
+        <table>
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Path</th>
+              <th>Original</th>
+              <th>Replay</th>
+            </tr>
+          </thead>
+          <tbody id="diffBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="decision-heading">
+      <h2 id="decision-heading">Decision circuit snapshot</h2>
+      <div id="circuit" class="circuit">
+        <div class="node"><span>Evidence</span><strong id="evidenceState">—</strong></div>
+        <div class="arrow">→</div>
+        <div class="node"><span>Authority Cell</span><strong id="authorityState">—</strong></div>
+        <div class="arrow">→</div>
+        <div class="node"><span>Evaluation</span><strong id="evaluationState">—</strong></div>
+        <div class="arrow">→</div>
+        <div class="node"><span>Decision</span><strong id="decisionState">—</strong></div>
+        <div class="arrow">→</div>
+        <div class="node"><span>Replay</span><strong id="replayState">—</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Working Draft 0.1 · Local demonstrator · A replay result proves equivalence of supplied records, not truth or lawful authority.</p>
+  </footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
