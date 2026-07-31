@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/kes/standards-registry/0.1",
+  "title": "KES-0005 ACA Standards Registry",
+  "type": "object",
+  "required": ["schema_version", "authority", "entries"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "authority": {"const": "Human Chief Architect"},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "kind", "parent_id", "allocation_state", "lifecycle_state", "source_path", "agents_may_allocate"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^ACA-[0-9]{3}$"},
+          "title": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["PROGRAM", "STANDARD", "CHILD_STANDARD"]},
+          "parent_id": {"type": ["string", "null"], "pattern": "^ACA-[0-9]{3}$"},
+          "allocation_state": {"enum": ["CANONICAL", "PROPOSED", "RESERVED", "RETIRED"]},
+          "lifecycle_state": {"enum": ["WORKING_DRAFT", "PUBLIC_REVIEW", "CANDIDATE", "STABLE", "RETIRED"]},
+          "source_path": {"type": "string", "minLength": 1},
+          "agents_may_allocate": {"const": false}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

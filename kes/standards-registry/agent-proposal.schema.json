@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/kes/agent-standard-proposal/0.1",
+  "title": "KES-0005 Identifier-Free Agent Proposal",
+  "type": "object",
+  "required": ["schema_version", "proposal_id", "parent_id", "title", "problem", "dependencies", "evidence", "uncertainties", "requested_human_decision"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "proposal_id": {"type": "string", "pattern": "^PROPOSAL-[A-Z0-9][A-Z0-9._-]*$"},
+    "parent_id": {"type": "string", "pattern": "^ACA-[0-9]{3}$"},
+    "title": {"type": "string", "minLength": 1},
+    "problem": {"type": "string", "minLength": 1},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "uncertainties": {"type": "array", "items": {"type": "string"}},
+    "requested_human_decision": {"const": "ALLOCATE_OR_REJECT"}
+  },
+  "additionalProperties": false
+}

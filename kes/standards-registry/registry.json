@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "authority": "Human Chief Architect",
+  "entries": [
+    {"id":"ACA-000","title":"Program Charter","kind":"PROGRAM","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-000.tex","agents_may_allocate":false},
+    {"id":"ACA-100","title":"Authority Circuit Architecture","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-100.tex","agents_may_allocate":false},
+    {"id":"ACA-110","title":"Core Terminology","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-110.tex","agents_may_allocate":false},
+    {"id":"ACA-120","title":"Verifiable Authority Cell","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-120.tex","agents_may_allocate":false},
+    {"id":"ACA-121","title":"Authority Cell Canonical Graph Extension","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-121.md","agents_may_allocate":false},
+    {"id":"ACA-122","title":"Sovereign-to-Action Derivation Projection","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-122.md","agents_may_allocate":false},
+    {"id":"ACA-123","title":"Verbatim Source and Citation Binding","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-123.md","agents_may_allocate":false},
+    {"id":"ACA-124","title":"Transition Proof Obligations","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-124.md","agents_may_allocate":false},
+    {"id":"ACA-125","title":"Multi-View Projection and Cross-View Reconciliation","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-125.md","agents_may_allocate":false},
+    {"id":"ACA-126","title":"Challenge, Counter-Authority, and Disagreement Records","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-126.md","agents_may_allocate":false},
+    {"id":"ACA-127","title":"Temporal and Audit Projection","kind":"CHILD_STANDARD","parent_id":"ACA-120","allocation_state":"PROPOSED","lifecycle_state":"WORKING_DRAFT","source_path":"aca/authority-cell-projections/docs/ACA-127.md","agents_may_allocate":false},
+    {"id":"ACA-130","title":"Decision State Machine","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-130.tex","agents_may_allocate":false},
+    {"id":"ACA-140","title":"Decision Proof Record","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-140.tex","agents_may_allocate":false},
+    {"id":"ACA-150","title":"Operationalized Remedy Protocol","kind":"STANDARD","parent_id":null,"allocation_state":"CANONICAL","lifecycle_state":"WORKING_DRAFT","source_path":"docs/tex/sections/aca-150.tex","agents_may_allocate":false}
+  ]
+}
