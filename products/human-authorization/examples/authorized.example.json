@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1",
+  "authorization_id": "EDS-0004-EXAMPLE-001",
+  "state": "AUTHORIZED",
+  "decision_object": "Synthetic pilot deployment record",
+  "proposed_action": "Run a reversible, non-production pilot using synthetic data only",
+  "authorized_scope": [
+    "synthetic records",
+    "read-only evaluation",
+    "seven-day pilot window"
+  ],
+  "prohibited_scope": [
+    "real-person decisions",
+    "production deployment",
+    "publication of identifying data",
+    "irreversible action"
+  ],
+  "authorizing_human": {
+    "name": "Human Chief Architect",
+    "role": "Accountable pilot authorizer",
+    "accountability_reference": "AIM-0000 and EDS-0004 governance record"
+  },
+  "role_and_authority_basis": "Explicitly assigned authority over this synthetic internal pilot only",
+  "evidence_and_result_references": [
+    "AIM-0000 research charter",
+    "EDS-0004 acceptance plan"
+  ],
+  "known_uncertainties": [
+    "measurement primitives are not validated",
+    "pilot results will not generalize to real-world decisions"
+  ],
+  "affected_rights_and_interests": [
+    "research integrity",
+    "data protection",
+    "future affected-person safeguards"
+  ],
+  "reason_for_authorization": "Test the authorization-record architecture under reversible, synthetic conditions",
+  "alternatives_considered": [
+    "document review without execution",
+    "postpone until external review"
+  ],
+  "effective_at": "2026-08-01T13:00:00Z",
+  "expires_at": "2026-08-08T13:00:00Z",
+  "rollback_conditions": [
+    "unexpected write capability",
+    "use of non-synthetic data",
+    "scope ambiguity",
+    "unresolved material finding"
+  ],
+  "remedy_path": [
+    "stop pilot",
+    "preserve logs",
+    "record finding",
+    "human review before restart"
+  ],
+  "conflict_disclosures": [
+    "authorizer is also program architect"
+  ],
+  "dissent_or_abstention": [],
+  "human_attestation": {
+    "affirmative": true,
+    "attested_at": "2026-08-01T12:55:00Z",
+    "method": "signed repository acceptance record"
+  },
+  "record_hash": null
+}
