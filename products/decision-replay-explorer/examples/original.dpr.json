@@ -1,0 +1,38 @@
+{
+  "schema": "kapukai.dpr.v0.1",
+  "record_id": "DPR-DEMO-001",
+  "decision_question": "May the controlled training workflow proceed?",
+  "authority_cell": {
+    "id": "ACA-DEMO-001",
+    "version": "1.0",
+    "jurisdiction": "synthetic"
+  },
+  "evidence_index": [
+    {
+      "id": "EV-1",
+      "title": "Training authorization",
+      "hash": "demo-a"
+    },
+    {
+      "id": "EV-2",
+      "title": "Safety review",
+      "hash": "demo-b"
+    }
+  ],
+  "evaluation": {
+    "predicates": {
+      "authority_valid": true,
+      "evidence_sufficient": true,
+      "conflict": false
+    },
+    "status": "PASS"
+  },
+  "decision": {
+    "state": "ELIGIBLE",
+    "rule_version": "1.0"
+  },
+  "verification": {
+    "status": "PASS"
+  },
+  "record_hash": "computed-by-exporter"
+}
