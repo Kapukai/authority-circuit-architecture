@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -118,6 +119,14 @@ def main() -> None:
             forbidden.append(str(rel))
     if forbidden:
         fail(f"forbidden generated/private packaging inputs found: {forbidden}")
+
+    registry_verify = ROOT / "kes" / "standards-registry" / "scripts" / "registry.py"
+    if registry_verify.is_file():
+        subprocess.run(
+            [sys.executable, str(registry_verify), "verify"],
+            cwd=ROOT,
+            check=True,
+        )
 
     print(f"ACA {version}: release-readiness validation passed")
 
