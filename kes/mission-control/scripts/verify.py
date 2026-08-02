@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "examples" / "program-state.json"
-REQUIRED_TOP = {"schema_version", "generated_at", "program", "items", "dependencies", "risks", "next_authorized_work"}
+REQUIRED_TOP = {"schema_version", "generated_at", "program", "items", "dependencies", "risks", "critical_path", "next_authorized_work"}
 VALID_STATES = {"PROPOSED","AUTHORIZED","IN_PROGRESS","BLOCKED","VERIFIED","ACCEPTED","RELEASED","DEFERRED","SUPERSEDED","WITHDRAWN","INDETERMINATE"}
 
 
@@ -36,6 +36,8 @@ def main() -> None:
     next_id = data["next_authorized_work"].get("id")
     if next_id not in known:
         fail(f"next authorized work is not a tracked item: {next_id}")
+    if next_id not in data["critical_path"]:
+        fail("next authorized work is not on the critical path")
     required_files = [
         ROOT / "README.md",
         ROOT / "mission-control.schema.json",

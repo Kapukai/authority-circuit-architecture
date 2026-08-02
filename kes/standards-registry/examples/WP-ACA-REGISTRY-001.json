@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "work_package_id": "WP-ACA-REGISTRY-001",
+  "target": "KES-0005",
+  "authorized_by": "Human Chief Architect",
+  "state": "IN_PROGRESS",
+  "scope": [
+    "Create the authoritative ACA identifier inventory",
+    "Reject identifier collisions and invalid child ownership",
+    "Define identifier-free agent proposals"
+  ],
+  "verification_commands": [
+    "python3 kes/standards-registry/scripts/registry.py verify",
+    "python3 kes/standards-registry/tests/test_registry.py",
+    "python3 scripts/validate.py"
+  ],
+  "human_acceptance_required": true
+}
