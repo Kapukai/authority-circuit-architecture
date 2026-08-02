@@ -1,0 +1,20 @@
+name: ACA Verify
+description: Deterministically evaluate a Decision Proof Record against an ACA partial conformance profile
+inputs:
+  record:
+    description: Path to a Decision Proof Record JSON file
+    required: true
+  profile:
+    description: Optional path to an ACA Verify profile
+    required: false
+    default: products/aca-verify/profiles/aca-dpr-baseline-v0.1.json
+runs:
+  using: composite
+  steps:
+    - name: Verify Decision Proof Record
+      shell: bash
+      run: >-
+        python3 "${{ github.action_path }}/../../../products/aca-verify/src/aca_verify.py"
+        "${{ inputs.record }}"
+        --profile "${{ inputs.profile }}"
+        --format text

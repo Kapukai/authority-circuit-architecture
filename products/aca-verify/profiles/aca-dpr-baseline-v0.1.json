@@ -1,0 +1,16 @@
+{
+  "schema": "kapukai.aca-verify-profile.v0.1",
+  "profile_id": "ACA-DPR-BASELINE-0.1",
+  "profile_version": "0.1.0",
+  "title": "ACA DPR Baseline Partial Conformance Profile",
+  "claim_scope": "PARTIAL_PROFILE_CONFORMANCE",
+  "rules": [
+    {"predicate_id":"subject.identified","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-140","question":"Is the affected subject unambiguously identified?","minimum_repair":"Add a stable subject identifier to the record and bind it to supporting evidence."},
+    {"predicate_id":"source.traceable","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-140","question":"Can each material assertion be traced to a source?","minimum_repair":"Bind each material assertion to an identified source and integrity reference."},
+    {"predicate_id":"authority.valid","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-120","question":"Is the claimed power connected to a specific authority?","minimum_repair":"Record the authority source, scope, responsible actor, and current validity."},
+    {"predicate_id":"temporal.valid","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-130","question":"Did the required facts and authority exist before the decision?","minimum_repair":"Record the relevant effective times and re-evaluate the decision sequence."},
+    {"predicate_id":"notice.meaningful","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-140","question":"Was meaningful notice recorded before reliance or enforcement?","minimum_repair":"Record meaningful notice, its recipient, content, and time."},
+    {"predicate_id":"contestability.available","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-150","question":"Was rebuttal, correction, or review available?","minimum_repair":"Provide and record an accessible correction or review route."},
+    {"predicate_id":"remedy.actor_identified","mandatory":true,"evidence_hash_advisory":true,"requirement_id":"ACA-150","question":"Is a responsible remedy actor and route identifiable?","minimum_repair":"Identify the responsible remedy actor, route, and applicable deadline."}
+  ]
+}
