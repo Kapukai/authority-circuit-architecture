@@ -128,6 +128,14 @@ def main() -> None:
             check=True,
         )
 
+    aca_verify = ROOT / "products" / "aca-verify" / "scripts" / "verify.py"
+    if aca_verify.is_file():
+        subprocess.run(
+            [sys.executable, str(aca_verify)],
+            cwd=ROOT,
+            check=True,
+        )
+
     print(f"ACA {version}: release-readiness validation passed")
 
 

@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "work_package_id": "WP-ACA-VERIFY-001",
+  "target": "ACA Verify v0.1 partial conformance interpreter",
+  "authorized_by": "Human Chief Architect",
+  "state": "VERIFIED",
+  "scope": [
+    "Interpret one Decision Proof Record against an explicit deterministic profile",
+    "Return PASS, WARN, FAIL, or INDETERMINATE with canonical requirement references",
+    "Provide minimum repair guidance and text, JSON, and HTML output",
+    "Preserve the boundary between verification and human authorization"
+  ],
+  "verification_commands": [
+    "python3 products/aca-verify/scripts/verify.py",
+    "python3 products/aca-verify/tests/test_aca_verify.py"
+  ],
+  "human_acceptance_required": true
+}

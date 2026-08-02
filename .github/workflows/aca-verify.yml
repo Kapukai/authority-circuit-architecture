@@ -1,0 +1,28 @@
+name: ACA Verify
+
+on:
+  push:
+    paths:
+      - "products/aca-verify/**"
+      - ".github/actions/aca-verify/**"
+      - ".github/workflows/aca-verify.yml"
+  pull_request:
+    paths:
+      - "products/aca-verify/**"
+      - ".github/actions/aca-verify/**"
+      - ".github/workflows/aca-verify.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify ACA Verify package
+        run: python3 products/aca-verify/scripts/verify.py
+      - name: Exercise reusable action
+        uses: ./.github/actions/aca-verify
+        with:
+          record: products/aca-verify/examples/passing-decision.json
