@@ -10,7 +10,8 @@ required = [
     "examples/passing-decision.json", "examples/warning-decision.json",
     "examples/failing-decision.json", "examples/indeterminate-decision.json",
     "tests/test_aca_verify.py", "docs/WORK_ORDER.md", "docs/THREAT_MODEL.md",
-    "docs/PUBLIC_DISCLOSURE_BOUNDARY.md", "RELEASE_NOTES.md"
+    "docs/PUBLIC_DISCLOSURE_BOUNDARY.md", "docs/SAFETY_HOLD.md",
+    "docs/HARDENING_FINDINGS.md", "RELEASE_NOTES.md"
 ]
 for rel in required:
     assert (ROOT / rel).is_file(), f"missing {rel}"
@@ -25,4 +26,6 @@ for name, code in (("passing-decision.json", 0), ("warning-decision.json", 0),
     assert result.returncode == code, (name, result.returncode, result.stderr)
     parsed = json.loads(result.stdout)
     assert parsed["claim_scope"] == "PARTIAL_PROFILE_CONFORMANCE"
+    assert parsed["verification_basis"] == "DECLARED_PREDICATES"
+    assert parsed["evidence_assurance"] == "DECLARED_DIGESTS_ONLY"
 print("PASS: ACA Verify package verified")
