@@ -22,6 +22,9 @@ FAIL_VALUES = {"FALSE", "CONFLICTED", "EXPIRED", "REVOKED"}
 VALID_REMEDY_STATES = {"NONE", "AVAILABLE", "ACTIVE", "COMPLETED", "FAILED"}
 CANONICAL_REQUIREMENTS = {"ACA-120", "ACA-130", "ACA-140", "ACA-150"}
 SHA256_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
+RFC3339_RE = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
+)
 
 
 class InvalidInput(ValueError):
@@ -46,10 +49,12 @@ def load_object(path: Path) -> dict:
 
 def validate_datetime(value: object, field: str) -> None:
     text = require_nonempty_string(value, field)
+    if not RFC3339_RE.fullmatch(text):
+        raise InvalidInput(f"{field} must be an RFC 3339 date-time with a UTC offset")
     try:
         datetime.fromisoformat(text.replace("Z", "+00:00"))
     except ValueError as exc:
-        raise InvalidInput(f"{field} must be an RFC 3339 date-time") from exc
+        raise InvalidInput(f"{field} must be an RFC 3339 date-time with a UTC offset") from exc
 
 
 def validate_record(record: dict) -> None:
@@ -103,8 +108,8 @@ def validate_record(record: dict) -> None:
     if not isinstance(remedy["route"], str):
         raise InvalidInput("remedy.route must be a string")
     deadline = remedy.get("deadline")
-    if deadline is not None and not isinstance(deadline, str):
-        raise InvalidInput("remedy.deadline must be a string or null")
+    if deadline is not None:
+        validate_datetime(deadline, "remedy.deadline")
 
 
 def validate_profile(profile: dict) -> None:

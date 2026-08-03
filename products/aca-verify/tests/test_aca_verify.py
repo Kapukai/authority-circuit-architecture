@@ -53,6 +53,18 @@ bad_date = copy.deepcopy(passing)
 bad_date["evaluated_at"] = "yesterday"
 rejected(bad_date, "RFC 3339")
 
+date_only = copy.deepcopy(passing)
+date_only["evaluated_at"] = "2026-08-02"
+rejected(date_only, "UTC offset")
+
+timezone_free = copy.deepcopy(passing)
+timezone_free["evaluated_at"] = "2026-08-02T00:00:00"
+rejected(timezone_free, "UTC offset")
+
+bad_deadline = copy.deepcopy(passing)
+bad_deadline["remedy"]["deadline"] = "next Tuesday"
+rejected(bad_deadline, "remedy.deadline")
+
 bad_remedy = copy.deepcopy(passing)
 bad_remedy["remedy"]["status"] = "MAYBE"
 rejected(bad_remedy, "invalid remedy status")
