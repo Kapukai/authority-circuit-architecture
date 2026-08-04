@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "generated_at": "2026-07-31T04:10:00-04:00",
+  "generated_at": "2026-08-03T09:05:00-04:00",
   "program": {
     "name": "Kapukai Program Architecture",
     "status": "IN_PROGRESS",
@@ -9,15 +9,16 @@
   },
   "items": [
     {"id":"ACA-000-150","name":"Authority Circuit Standards Foundation","family":"ACA","state":"RELEASED","owner":"Human Chief Architect","branch":"main","pull_request":3,"verification_state":"PASS","publication_state":"PUBLISHED","description":"Current Working Draft 0.1 standards family.","blocking_reason":null,"updated_at":"2026-07-25T02:42:10Z"},
-    {"id":"KAPU","name":"KAPU Evaluation Engine","family":"KAPU","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"main","pull_request":null,"verification_state":"INDETERMINATE","publication_state":"NOT_PUBLISHED","description":"Formal evaluation capability.","blocking_reason":null,"updated_at":"2026-07-31T03:22:00-04:00"},
+    {"id":"KAPU","name":"KAPU Evaluation Engine","family":"KAPU","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"main","pull_request":null,"verification_state":"INDETERMINATE","publication_state":"NOT_PUBLISHED","description":"Formal evaluation capability; ACA Verify is tracked separately as a bounded declared-predicate interpreter.","blocking_reason":null,"updated_at":"2026-08-03T09:05:00-04:00"},
     {"id":"EDS-0003","name":"Decision Replay Explorer","family":"EDS","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":4,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged into main after acceptance; compares supplied Decision Proof Records and exposes divergence.","blocking_reason":null,"updated_at":"2026-07-31T06:06:43Z"},
     {"id":"KES-0002","name":"Release Pipeline","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":5,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged into main through the canonical KES-0003 integration candidate.","blocking_reason":null,"updated_at":"2026-07-31T07:56:00Z"},
     {"id":"KES-0003","name":"Repository Intelligence","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":5,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged into main with KES-0002 through PR #5.","blocking_reason":null,"updated_at":"2026-07-31T07:56:00Z"},
     {"id":"KES-0004","name":"Mission Control","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":6,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Read-only program control plane merged into main through PR #6.","blocking_reason":null,"updated_at":"2026-07-31T08:01:00Z"},
-    {"id":"KES-0005","name":"Standards Registry and Work Orchestration","family":"KES","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"kes/kes-0005-standards-registry","pull_request":null,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Deterministic ACA identifier registry, agent proposal boundary, and governed work-package contract.","blocking_reason":null,"updated_at":"2026-07-31T21:45:00Z"},
-    {"id":"AIM-0000","name":"Authority Integrity Mechanics Program Charter","family":"AIM","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"aim/aim-0000-research-charter","pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Research charter, construct register, promotion gates, and safety boundary for Authority Integrity Mechanics.","blocking_reason":null,"updated_at":"2026-07-31T04:10:00-04:00"},
+    {"id":"KES-0005","name":"Standards Registry and Work Orchestration","family":"KES","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":12,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Deterministic ACA identifier registry, agent proposal boundary, and governed work-package contract merged through PR #12.","blocking_reason":null,"updated_at":"2026-08-02T00:00:00-04:00"},
+    {"id":"ACA-VERIFY-0.1","name":"ACA Verify Declared-Predicate Interpreter","family":"KAPU","state":"VERIFIED","owner":"Human Chief Architect","branch":"main","pull_request":13,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Merged candidate partial-profile interpreter; it evaluates supplied declarations and does not independently establish facts, artifact bindings, legality, or authority.","blocking_reason":"Active safety hold: no release, tag, deployment, pilot, marketing, real-case use, or consequential reliance pending hardening and human IP, licensing, security, claims, and release review.","updated_at":"2026-08-03T09:05:00-04:00"},
+    {"id":"AIM-0000","name":"Authority Integrity Mechanics Program Charter","family":"AIM","state":"ACCEPTED","owner":"Human Chief Architect","branch":"main","pull_request":7,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Research charter, construct register, promotion gates, and safety boundary merged through PR #7.","blocking_reason":null,"updated_at":"2026-08-03T09:05:00-04:00"},
     {"id":"AIM-0001","name":"Authority Integrity Mechanics Measurement Primitives","family":"AIM","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Operational definitions, units, observation rules, and falsification tests for candidate mechanics.","blocking_reason":"Eligible only after AIM-0000 human acceptance.","updated_at":"2026-07-31T04:10:00-04:00"},
-    {"id":"EDS-0004","name":"Human Authorization","family":"EDS","state":"PROPOSED","owner":"Human Chief Architect","branch":null,"pull_request":null,"verification_state":"NOT_RUN","publication_state":"NOT_PUBLISHED","description":"Human authorization layer separated from verification.","blocking_reason":"Work order not yet authorized.","updated_at":"2026-07-31T03:22:00-04:00"}
+    {"id":"EDS-0004","name":"Human Authorization","family":"EDS","state":"IN_PROGRESS","owner":"Human Chief Architect","branch":"eds/eds-0004-human-authorization","pull_request":8,"verification_state":"PASS","publication_state":"NOT_PUBLISHED","description":"Draft human authorization architecture remains separate from verification and awaits human review in PR #8.","blocking_reason":"Draft PR requires architecture review and explicit human acceptance before merge.","updated_at":"2026-08-03T09:05:00-04:00"}
   ],
   "dependencies": [
     {"from":"KES-0003","to":"KES-0004","kind":"INFORMS"},
@@ -25,19 +26,23 @@
     {"from":"KES-0004","to":"AIM-0000","kind":"REQUIRES"},
     {"from":"AIM-0000","to":"AIM-0001","kind":"REQUIRES"},
     {"from":"ACA-000-150","to":"EDS-0004","kind":"INFORMS"},
-    {"from":"EDS-0003","to":"EDS-0004","kind":"INFORMS"}
+    {"from":"EDS-0003","to":"EDS-0004","kind":"INFORMS"},
+    {"from":"KES-0005","to":"ACA-VERIFY-0.1","kind":"REQUIRES"},
+    {"from":"ACA-VERIFY-0.1","to":"EDS-0004","kind":"INFORMS"}
   ],
   "risks": [
     {"id":"RISK-001","title":"Ambiguous branch disposition","severity":"HIGH","state":"CONTAINED","owner":"Human Chief Architect","containment":"KES-0002, KES-0003, and KES-0004 are merged into protected main through PRs #5 and #6; future work uses explicit feature branches and pull requests."},
     {"id":"RISK-002","title":"Verification confused with authorization","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"Maintain separate fields and gates for verification, acceptance, authorization, publication, and release."},
     {"id":"RISK-003","title":"Research claims promoted prematurely","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"AIM-0000 defines AIM as non-normative and requires reproducibility, adversarial review, expert review, misuse review, and a separate ACA standardization decision."},
-    {"id":"RISK-004","title":"Agent-generated ACA identifier collision","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"KES-0005 makes the registry authoritative, prohibits agent allocation, validates decade parentage, and requires human acceptance."}
+    {"id":"RISK-004","title":"Agent-generated ACA identifier collision","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"KES-0005 makes the registry authoritative, prohibits agent allocation, validates decade parentage, and requires human acceptance."},
+    {"id":"RISK-005","title":"Candidate verifier overclaim","severity":"CRITICAL","state":"CONTAINED","owner":"Human Chief Architect","containment":"ACA Verify is labeled as a declared-predicate partial-profile interpreter; reliance remains NOT_ESTABLISHED; an active safety hold blocks release and real-case use."},
+    {"id":"RISK-006","title":"Unresolved public licensing and patent boundary","severity":"HIGH","state":"OPEN","owner":"Human Chief Architect","containment":"No release tag, deployment, pilot, or external adoption claim until human intellectual-property and licensing review is recorded."}
   ],
   "critical_path": ["KES-RR-0001","KES-0004","KES-0005","AIM-0000","EDS-0004","AIM-0001","EDS-0005","AIM-0002","AIM-0003","ACA-200","PILOT-0001"],
   "next_authorized_work": {
-    "id": "KES-0005",
+    "id": "EDS-0004",
     "authorized_by": "Human Chief Architect",
     "authorization_state": "AUTHORIZED",
-    "reason": "The Human Chief Architect authorized the canonical registry and agent-boundary control as an independent KES capability."
+    "reason": "KES-0005 and AIM-0000 are accepted; the next architectural gate is the explicit human authorization layer in draft PR #8."
   }
 }
