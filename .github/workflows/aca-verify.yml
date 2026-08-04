@@ -26,3 +26,11 @@ jobs:
         uses: ./.github/actions/aca-verify
         with:
           record: products/aca-verify/examples/passing-decision.json
+          strict: "true"
+      - name: Reject warning fixture in strict mode
+        run: |
+          if python3 products/aca-verify/src/aca_verify.py \
+            products/aca-verify/examples/warning-decision.json --strict; then
+            echo "strict mode unexpectedly accepted WARN"
+            exit 1
+          fi

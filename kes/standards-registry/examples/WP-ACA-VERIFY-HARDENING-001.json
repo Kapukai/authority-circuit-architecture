@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1",
+  "work_package_id": "WP-ACA-VERIFY-HARDENING-001",
+  "target": "ACA Verify v0.1.1 candidate safety hardening",
+  "authorized_by": "Human Chief Architect",
+  "state": "VERIFIED",
+  "scope": [
+    "Validate declared Decision Proof Record and profile structures strictly",
+    "Distinguish mandatory rules from advisory rules deterministically",
+    "Expose undeclared predicates and declared-only evidence assurance",
+    "Block warning results in GitHub Action strict mode",
+    "Record residual risks and preserve an active human release safety hold"
+  ],
+  "verification_commands": [
+    "python3 products/aca-verify/tests/test_aca_verify.py",
+    "python3 products/aca-verify/scripts/verify.py",
+    "python3 scripts/validate.py"
+  ],
+  "human_acceptance_required": true
+}

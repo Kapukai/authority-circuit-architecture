@@ -1,5 +1,10 @@
-# ACA Verify v0.1.0 — Candidate
+# ACA Verify v0.1.1 — Hardening Candidate
 
-Initial deterministic partial-profile interpreter with text, JSON, and HTML
-output; four conformance fixtures; canonical ACA references; and minimum repair
-guidance. Candidate status does not authorize publication or consequential use.
+Hardens the initial deterministic partial-profile interpreter with strict input
+and profile validation, mandatory/advisory rule semantics, visible unevaluated
+predicates, declared-evidence limitations, strict CI mode, and adversarial
+tests. Candidate status does not authorize publication or consequential use.
+
+There is no authorized release tag. The safety hold remains active until human
+intellectual-property, licensing, security, claims, and release review is
+recorded.

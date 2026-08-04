@@ -8,6 +8,10 @@ inputs:
     description: Optional path to an ACA Verify profile
     required: false
     default: products/aca-verify/profiles/aca-dpr-baseline-v0.1.json
+  strict:
+    description: Fail the workflow on WARN as well as FAIL
+    required: false
+    default: "true"
 runs:
   using: composite
   steps:
@@ -18,3 +22,4 @@ runs:
         "${{ inputs.record }}"
         --profile "${{ inputs.profile }}"
         --format text
+        ${{ inputs.strict == 'true' && '--strict' || '' }}
