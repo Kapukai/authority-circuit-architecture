@@ -21,6 +21,7 @@ REQUIRED_DOCS = {
     "aca-130",
     "aca-140",
     "aca-150",
+    "aca-160",
 }
 
 
