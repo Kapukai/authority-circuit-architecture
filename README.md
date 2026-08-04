@@ -22,6 +22,7 @@ authority circuit -> decision proof record -> operationalized remedy.
 - ACA-130 - Decision State Machine
 - ACA-140 - Decision Proof Record
 - ACA-150 - Operationalized Remedy Protocol
+- ACA-160 - Predicate Failure Taxonomy
 
 ## Local build
 

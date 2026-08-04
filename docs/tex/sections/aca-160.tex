@@ -1,0 +1,245 @@
+\chapter{ACA-160 --- Predicate Failure Taxonomy}
+
+\section{Purpose}
+This chapter defines a diagnostic taxonomy for failures of the nine canonical predicates evaluated by the Verifiable Authority Cell (VAC) in ACA-120. It does not replace the predicate model. It classifies how a predicate can become unreliable, misleading, unavailable, improperly satisfied, or unsafe to use.
+
+The taxonomy is intended for conformance testing, adversarial testing, incident analysis, corrective action, and remedy design. It classifies observable system conditions rather than presumed motives or moral character.
+
+\begin{requirement}[ACA-160-001]
+A claimed predicate failure SHALL identify the affected predicate, failure mode, observable indicators, supporting evidence, decision effect, propagation scope, and available containment or remedy.
+\end{requirement}
+
+\begin{requirement}[ACA-160-002]
+A failure classification SHALL NOT by itself establish unlawful conduct, malicious intent, factual falsity, or legal invalidity. Those conclusions require independent evidence and the applicable governing standard.
+\end{requirement}
+
+\section{Taxonomy structure}
+Each failure entry uses the following fields:
+\begin{enumerate}
+\item \textbf{Code}: stable identifier;
+\item \textbf{Predicate}: one of $A,J,R,E,P,T,N,C,V$;
+\item \textbf{Failure mode}: the structural defect;
+\item \textbf{Trigger or cause}: how the defect may arise;
+\item \textbf{Observable indicators}: evidence suitable for testing;
+\item \textbf{Decision effect}: expected effect on the VAC state;
+\item \textbf{Propagation risk}: how later cells or records may inherit the defect;
+\item \textbf{Containment}: immediate action to prevent additional reliance;
+\item \textbf{Remedy}: correction, review, restoration, or closure path.
+\end{enumerate}
+
+\section{Cross-cutting failure classes}
+\begin{longtable}{p{0.18\textwidth}p{0.30\textwidth}p{0.42\textwidth}}
+\toprule
+\textbf{Class} & \textbf{Definition} & \textbf{Baseline response}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Class} & \textbf{Definition} & \textbf{Baseline response}\\
+\midrule
+\endhead
+Missing & A mandatory predicate was not evaluated or its required object is absent. & Prevent \state{ALLOW}; ordinarily emit \state{HOLD} or \state{ESCALATE}.\\
+Unsupported & A value is asserted without the evidence or rule reference required by the profile. & Mark \state{UNKNOWN}; request the missing support.\\
+Misbound & Valid information is attached to the wrong subject, action, jurisdiction, rule, time, or authority object. & Quarantine the affected evaluation and test all downstream bindings.\\
+Stale & The value was once usable but its effective interval, evidence freshness, delegation, or review period has expired. & Re-evaluate from current sources; prevent execution.\\
+Conflicted & Material sources support incompatible values and no valid precedence rule resolves them. & Emit \state{CONFLICT}; preserve all competing inputs.\\
+Substituted & One proof type is silently used as another, such as integrity being treated as truth or status as authorization. & Reject the substitution and evaluate the actual required predicate.\\
+Suppressed & Known material contrary, limiting, or revoking information is omitted from evaluation or proof. & Suspend reliance; restore the omitted input and replay.\\
+Overridden & A value or state is changed outside the declared override authority, scope, or review process. & Treat as non-conforming; revoke or hold the resulting action pending review.\\
+Ambiguous & The predicate, value domain, rule, target, or reason code permits materially different interpretations. & Escalate for clarification; version the corrected definition.\\
+Non-replayable & The result cannot be reproduced from retained inputs, versions, and declared dependencies. & Mark conformance unproven and preserve the original record for investigation.\\
+\bottomrule
+\end{longtable}
+
+\section{Authority validity failures ($A$)}
+\begin{description}[style=nextline]
+\item[A-USURPATION --- Unestablished authority exercised]
+An actor or component exercises power without a demonstrated source and chain. Indicators include absent source authority, missing delegation, or action beyond declared scope. Baseline effect: \state{DENY}, \state{HOLD}, or \state{ESCALATE}; never \state{ALLOW}.
+
+\item[A-LAUNDERING --- Unsupported assertion converted into apparent authority]
+A private, informal, automated, or unverified assertion is incorporated into an official record and later relied upon as if its authority were independently established. Containment requires marking the derived records, stopping further reliance, and tracing every dependent evaluation.
+
+\item[A-SCOPE-DRIFT --- Authority exceeds delegated scope]
+The actor, subject, action, duration, remedy, or territory exceeds the source authority.
+
+\item[A-STATUS-SUBSTITUTION --- Role or title treated as action-specific authorization]
+A person's office, credential, employment, or institutional status is treated as sufficient without evaluating the predicates for the particular action.
+
+\item[A-BROKEN-CHAIN --- Delegation path is incomplete]
+One or more links between source authority and the acting component are absent, expired, inconsistent, or unverifiable.
+\end{description}
+
+\section{Jurisdiction failures ($J$)}
+\begin{description}[style=nextline]
+\item[J-NEXUS-FAILURE --- Required connection not established]
+The record does not establish the required relationship between the decision and the forum, subject, resource, transaction, or matter.
+
+\item[J-TARGET-MISBINDING --- Jurisdiction attached to the wrong target]
+Identifiers, names, records, or roles are confused, merged, or assumed equivalent.
+
+\item[J-BOUNDARY-EXPANSION --- Jurisdiction silently broadened]
+A narrow or emergency basis is used to support ordinary, continuing, or broader power without a fresh evaluation.
+
+\item[J-COMPETING-FORUM-SUPPRESSION --- Material competing jurisdiction omitted]
+A potentially controlling or conflicting forum, rule, or authority is not represented in the conflict analysis.
+\end{description}
+
+\section{Rule applicability failures ($R$)}
+\begin{description}[style=nextline]
+\item[R-WRONG-RULE --- Non-governing rule selected]
+A rule is authentic but does not govern the subject, event, actor, or requested remedy.
+
+\item[R-VERSION-DRIFT --- Unversioned or incorrect rule version used]
+The evaluator cannot identify the exact rule text and effective version used.
+
+\item[R-EXCEPTION-SUPPRESSION --- Applicable exception omitted]
+A limiting clause, exception, defense, exemption, or precedence rule is excluded from executable semantics.
+
+\item[R-NARRATIVE-SUBSTITUTION --- Prose conclusion replaces executable rule]
+A summary, label, allegation, or prior outcome is treated as the rule itself.
+\end{description}
+
+\section{Evidence sufficiency failures ($E$)}
+\begin{description}[style=nextline]
+\item[E-ASSERTION-AS-EVIDENCE --- Repetition treated as corroboration]
+An assertion gains apparent weight through copying, citation, database entry, or institutional repetition without an independent evidentiary basis.
+
+\item[E-INTEGRITY-AS-TRUTH --- Authenticity substituted for factual truth]
+A signature, hash, timestamp, or chain of custody proves integrity or attribution but is treated as proving the underlying assertion.
+
+\item[E-SELECTIVE-RECORD --- Material contrary evidence suppressed]
+Known supporting, limiting, contradictory, unavailable, or exculpatory evidence is omitted from evaluation.
+
+\item[E-PROVENANCE-BREAK --- Source or acquisition history cannot be verified]
+The evidence object cannot be reliably connected to its origin, custodian, collection method, or asserted fact.
+
+\item[E-THRESHOLD-DRIFT --- Sufficiency threshold changes without versioning]
+The quantity or quality of evidence required for approval is changed implicitly, inconsistently, or after the fact.
+\end{description}
+
+\section{Procedure completeness failures ($P$)}
+\begin{description}[style=nextline]
+\item[P-SKIPPED-INTERLOCK --- Required step bypassed]
+A mandatory review, verification, hearing, approval, consultation, or safeguard is omitted.
+
+\item[P-SEQUENCE-INVERSION --- Outcome precedes prerequisite]
+Execution, restriction, publication, or enforcement occurs before the procedure that authorizes it.
+
+\item[P-RUBBER-STAMP --- Review exists in form but not function]
+The designated reviewer lacks time, information, independence, competence, or real authority to reject or correct the proposed action.
+
+\item[P-EMERGENCY-NORMALIZATION --- Exceptional path becomes ordinary]
+An emergency procedure persists, expands, or repeats without renewed predicates and safeguards.
+\end{description}
+
+\section{Temporal validity failures ($T$)}
+\begin{description}[style=nextline]
+\item[T-STALE-AUTHORITY --- Expired authority relied upon]
+A delegation, appointment, order, credential, or permission is used outside its effective interval.
+
+\item[T-RETROACTIVE-BINDING --- Later state rewrites earlier authority]
+A later rule, finding, record, or authorization is treated as if it existed when the original action occurred.
+
+\item[T-DELAYED-REMEDY --- Review becomes functionally unavailable]
+Delay prevents meaningful correction, restoration, preservation, or challenge.
+
+\item[T-CLOCK-AMBIGUITY --- Material time cannot be established]
+The evaluation lacks a trusted time source, synchronized sequence, or applicable interval.
+\end{description}
+
+\section{Notice and review failures ($N$)}
+\begin{description}[style=nextline]
+\item[N-NOTICE-FAILURE --- Required notice absent or defective]
+Notice is missing, late, sent to the wrong recipient, inaccessible, incomplete, or does not identify the proposed action and response path.
+
+\item[N-ILLUSORY-REVIEW --- Review exists nominally but cannot provide correction]
+The reviewer lacks jurisdiction, independence, evidence access, remedial power, or sufficient time.
+
+\item[N-BURDEN-INVERSION --- Affected party must disprove unestablished authority]
+The system acts first and shifts the burden to the affected party to establish that prerequisites were never satisfied.
+
+\item[N-REASON-SUPPRESSION --- Decision basis is not disclosed enough to challenge]
+The proof record lacks the rule, predicates, evidence classes, reason code, or review instructions necessary for meaningful contest.
+\end{description}
+
+\section{Conflict failures ($C$)}
+\begin{description}[style=nextline]
+\item[C-HIDDEN-CONFLICT --- Material conflict not represented]
+The evaluator suppresses or fails to detect an incompatible source, interest, rule, identity, or prior decision.
+
+\item[C-SELF-REVIEW --- Conflicted actor controls resolution]
+The same actor creates, evaluates, executes, and closes review of the disputed action without an independent control required by the profile.
+
+\item[C-FALSE-PRECEDENCE --- Priority asserted without governing basis]
+One source or assertion is treated as controlling without an applicable and versioned precedence rule.
+
+\item[C-CONFLICT-COLLAPSE --- Conflict silently converted to approval]
+The system discards uncertainty or contradiction rather than emitting \state{CONFLICT} or \state{ESCALATE}.
+\end{description}
+
+\section{Revocation and prohibition failures ($V$)}
+\begin{description}[style=nextline]
+\item[V-REVOCATION-SUPPRESSION --- Current revocation ignored]
+A valid revocation exists but is absent, hidden, delayed, or treated as advisory.
+
+\item[V-STALE-PROHIBITION --- Expired restriction treated as current]
+A prior prohibition continues to block action after its valid period or scope.
+
+\item[V-OVERRIDDEN-BAR --- Prohibition bypassed without valid override]
+The override actor, scope, basis, duration, or independent review is missing.
+
+\item[V-PROPAGATION-FAILURE --- Revocation does not reach dependent systems]
+Downstream cells, records, permissions, or executions continue relying on the revoked object.
+\end{description}
+
+\section{Propagation taxonomy}
+A local predicate failure becomes systemic when dependent decisions inherit it without re-evaluation.
+
+\begin{description}[style=nextline]
+\item[PR-COPY] A defective assertion is copied into additional records.
+\item[PR-CITATION] Later decisions cite the defective record as independent support.
+\item[PR-AUTOMATION] Software repeatedly applies the defective value at scale.
+\item[PR-CREDENTIAL] The defective outcome creates a role, permission, restriction, or status used as a new input.
+\item[PR-PRECEDENT] A prior defective outcome is treated as a controlling template.
+\item[PR-REMEDY-BLOCK] The propagated state obstructs the route needed to correct its own source.
+\end{description}
+
+\begin{requirement}[ACA-160-003]
+When a material predicate failure is confirmed, the responsible system SHALL identify all reasonably discoverable dependent cells, proof records, executions, credentials, restrictions, and remedies that relied on the failed value.
+\end{requirement}
+
+\section{Containment and recovery}
+\begin{enumerate}
+\item mark the affected predicate and evaluation as disputed, invalid, stale, or under review;
+\item prevent new \state{ALLOW} decisions that depend on the failed value;
+\item preserve the original proof and execution history;
+\item identify the smallest compromised unit and all downstream dependencies;
+\item obtain or re-evaluate the missing source, evidence, rule, procedure, time, notice, conflict, or revocation input;
+\item replay affected cells under corrected and versioned inputs;
+\item reverse, amend, compensate, notify, or otherwise remedy affected outputs under ACA-150;
+\item verify propagation and closure independently.
+\end{enumerate}
+
+\begin{requirement}[ACA-160-004]
+Correction SHALL create a linked, append-only history. It SHALL NOT erase the original predicate value, decision, execution, or impact.
+\end{requirement}
+
+\begin{requirement}[ACA-160-005]
+A failure SHALL remain open until the source defect, dependent evaluations, executed consequences, affected parties, and required remedies have each been resolved or explicitly recorded as unresolved by an identified authority.
+\end{requirement}
+
+\section{Initial conformance tests}
+A conforming test suite SHOULD include at least:
+\begin{enumerate}
+\item one positive baseline for every predicate;
+\item one missing, unsupported, misbound, stale, conflicted, substituted, suppressed, and overridden case;
+\item one case in which an unsupported assertion is copied into a later record;
+\item one case in which status is incorrectly substituted for authorization;
+\item one case in which a revocation fails to propagate;
+\item one case in which an emergency path attempts to become permanent;
+\item one remedy replay showing correction without deletion of history.
+\end{enumerate}
+
+\section{Design rule}
+\begin{requirement}[ACA-160-006]
+A system SHALL NOT treat repetition, institutional possession, procedural completion, technical integrity, actor status, or prior execution as independent proof that the predicates required for present authorization are satisfied.
+\end{requirement}
