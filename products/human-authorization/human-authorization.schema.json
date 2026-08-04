@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kapukai.org/schemas/eds-0004-human-authorization-0.1.json",
+  "title": "EDS-0004 Human Authorization Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authorization_id",
+    "state",
+    "decision_object",
+    "proposed_action",
+    "authorized_scope",
+    "prohibited_scope",
+    "authorizing_human",
+    "role_and_authority_basis",
+    "evidence_and_result_references",
+    "known_uncertainties",
+    "affected_rights_and_interests",
+    "reason_for_authorization",
+    "alternatives_considered",
+    "effective_at",
+    "expires_at",
+    "rollback_conditions",
+    "remedy_path",
+    "conflict_disclosures",
+    "dissent_or_abstention",
+    "human_attestation"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "authorization_id": {"type": "string", "minLength": 1},
+    "state": {
+      "enum": ["DRAFT", "PENDING_HUMAN_REVIEW", "AUTHORIZED", "DENIED", "ABSTAINED", "EXPIRED", "REVOKED", "SUPERSEDED", "INDETERMINATE"]
+    },
+    "decision_object": {"type": "string", "minLength": 1},
+    "proposed_action": {"type": "string", "minLength": 1},
+    "authorized_scope": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "prohibited_scope": {"type": "array", "items": {"type": "string"}},
+    "authorizing_human": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "role", "accountability_reference"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "minLength": 1},
+        "accountability_reference": {"type": "string", "minLength": 1}
+      }
+    },
+    "role_and_authority_basis": {"type": "string", "minLength": 1},
+    "evidence_and_result_references": {"type": "array", "items": {"type": "string"}},
+    "known_uncertainties": {"type": "array", "items": {"type": "string"}},
+    "affected_rights_and_interests": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "reason_for_authorization": {"type": "string", "minLength": 1},
+    "alternatives_considered": {"type": "array", "items": {"type": "string"}},
+    "effective_at": {"type": ["string", "null"], "format": "date-time"},
+    "expires_at": {"type": ["string", "null"], "format": "date-time"},
+    "rollback_conditions": {"type": "array", "items": {"type": "string"}},
+    "remedy_path": {"type": "array", "items": {"type": "string"}},
+    "conflict_disclosures": {"type": "array", "items": {"type": "string"}},
+    "dissent_or_abstention": {"type": "array", "items": {"type": "string"}},
+    "human_attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["affirmative", "attested_at", "method"],
+      "properties": {
+        "affirmative": {"type": "boolean"},
+        "attested_at": {"type": ["string", "null"], "format": "date-time"},
+        "method": {"type": "string"}
+      }
+    },
+    "record_hash": {"type": ["string", "null"]}
+  }
+}
