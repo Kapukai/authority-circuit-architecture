@@ -2,7 +2,7 @@
 
 **Status:** Working research draft — informative, not a conformance standard.  
 **Maintainer:** Kapukai Governance Lab.  
-**Edition date:** September 10, 2026.
+**Edition date:** September 11, 2026 (UTC).
 
 This register connects public source material to clearly stated research questions about public decision systems. Each entry records what the source reports, the proposition it supports, and what remains unestablished.
 
@@ -14,7 +14,9 @@ This register connects public source material to clearly stated research questio
 
 The initial cases document criminal conduct by people holding official roles. They are counterexamples to an unconditional assumption that an official role guarantees safe conduct. They do not, by themselves, establish role-based favoritism, improper rulings, an institutional cover-up, or financial corruption of a public decision.
 
-A prosecution is an official source about the proceeding, not proof of every broader interpretation a reader might attach to it. Kapukai's analysis remains separately identified.
+The register now includes [KGL-RID-003: Sylvia Mbilo Mundala](role-id/KGL-RID-003-sylvia-mbilo-mundala.md), an Indiana DCS record-integrity case sourced to the Indiana Office of Inspector General's September 10, 2026 release.
+
+An official investigation or prosecution announcement is a source about the investigation or proceeding, not proof of every broader interpretation a reader might attach to it. Kapukai's analysis remains separately identified.
 
 ## How to use this register
 
